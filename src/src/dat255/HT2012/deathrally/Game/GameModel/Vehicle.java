@@ -1,7 +1,25 @@
 package dat255.HT2012.deathrally.Game.GameModel;
 
-public abstract class Vehicle {
-	public Vehicle() {};
+public class Vehicle extends Movable {
+	private int acceleration;
+	private int maxSpeed;
+	private int turn;
+	private int maxTurnAngle;
 	
-	public  void move(Direction direction) {};
+	public Vehicle(int acceleration, int maxSpeed){
+		this.acceleration = acceleration;
+		this.maxSpeed = maxSpeed;
+	}
+	public void accelerate(int intensity){
+		//Change velocity accordingly
+		
+		
+		//Notify observer
+		
+	}
+	
+	public void turn(int intensity){
+		
+		
+	}
 }
