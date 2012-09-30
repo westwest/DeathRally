@@ -1,6 +1,9 @@
 package dat255.HT2012.deathrally.Game.GameModel;
 
+import dat255.HT2012.deathrally.Game.Visual.Movable;
+
 public class Player {
+	private Vehicle car;
 	
 	
 	public Player() {
@@ -12,8 +15,7 @@ public class Player {
 	}
 	
 	public Vehicle getVehicle() {
-		// TODO
-		return null;
+		return car;
 	}
 	
 	public void moveVehicle(Direction direction) {
