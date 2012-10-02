@@ -29,7 +29,7 @@ public class GameRenderer implements Renderer {
 		//GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
 		gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
 		gl.glLoadIdentity();
-		gl.glTranslatef(0, 0, -4);
+		gl.glTranslatef(0, 0, -8);
 		t.draw(gl);
 	}
 

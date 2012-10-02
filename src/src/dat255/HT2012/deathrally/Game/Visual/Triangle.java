@@ -16,9 +16,9 @@ import javax.microedition.khronos.opengles.GL10;
  */
 public class Triangle {
 	private float vertices[] = {
-				 0.0f, 1.0f, 0.0f,
-				-1.0f, 0.0f, 0.0f,
-				 1.0f, 0.0f, 0.0f
+				 0.0f, 0.7f, 0.0f,
+				-0.3f, 0.0f, 0.0f,
+				 0.3f, 0.0f, 0.0f
 			};
 	private short indicies[] = {
 			0,1,2
