@@ -7,6 +7,8 @@ import java.nio.ShortBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import android.util.Log;
+
 /**
  * Developed from square-class in public domain, and will be used for testing purposes only.
  * Source: http://www.jayway.com/2009/12/04/opengl-es-tutorial-for-android-part-ii-building-a-polygon/
@@ -15,6 +17,8 @@ import javax.microedition.khronos.opengles.GL10;
  *
  */
 public class Triangle {
+	private static final String TAG = Triangle.class.getSimpleName();
+	
 	private float vertices[] = {
 				 0.0f, 0.7f, 0.0f,
 				-0.3f, 0.0f, 0.0f,
@@ -53,5 +57,7 @@ public class Triangle {
 		
 		gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
 		gl.glDisable(GL10.GL_CULL_FACE);
+		
+		Log.d(TAG, "drawing triangle");
 	}
 }
