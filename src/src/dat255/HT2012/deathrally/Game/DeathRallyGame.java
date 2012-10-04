@@ -1,31 +1,28 @@
 package dat255.HT2012.deathrally.Game;
 
-import dat255.HT2012.deathrally.Game.Visual.GameRenderer;
+
 import android.app.Activity;
-import android.app.ActivityManager;
-import android.content.Context;
-import android.content.pm.ConfigurationInfo;
-import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
+import dat255.HT2012.deathrally.Game.GameModel.*;
+import dat255.HT2012.deathrally.Game.Visual.*;
 
 public class DeathRallyGame extends Activity {
 	MainGamePanel view;
+	GameLoop gameLoop;
 	
-	protected void onPause(){
-		super.onPause();
-		view.onPause();
-	}
-	protected void onResume(){
-		super.onResume();
-		view.onResume();
-	}
+	private static final String TAG = DeathRallyGame.class.getSimpleName();
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState){
-		super.onCreate(savedInstanceState);
+	protected void onCreate(Bundle savedInstanceState) {				
+		super.onCreate(savedInstanceState);		
+		
+		Log.d(TAG, "game activity created");
 		view = new MainGamePanel(this);
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		gameLoop = new GameLoop(view.getHolder(), view);
+		
+		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		
 		/* Checking OpenGL support */
 		/*
@@ -44,5 +41,16 @@ public class DeathRallyGame extends Activity {
 		*/
 		setContentView(view);
 	}
+	
+	protected void onPause() {
+		super.onPause();
+		view.onPause();
+	}
+	
+	protected void onResume() {
+		super.onResume();
+		view.onResume();
+	}
+
 
 }

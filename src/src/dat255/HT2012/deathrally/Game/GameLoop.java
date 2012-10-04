@@ -1,5 +1,6 @@
 package dat255.HT2012.deathrally.Game;
 
+import android.util.Log;
 import android.view.SurfaceHolder;
 /**
  * @author Stugatz
@@ -36,6 +37,14 @@ public class GameLoop extends Thread {
 	@Override
 	public void run() {
 		while (running) {
+			Log.d(TAG, "running loop");
+			gamePanel.requestRender();
+			
+			try {
+				Thread.sleep(500);
+			} catch (Exception e) {
+				Log.d(TAG, "Thread sleep interupted");
+			}
 			// update game state
 			// render state to the screen
 		}
