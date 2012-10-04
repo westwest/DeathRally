@@ -1,9 +1,11 @@
 package dat255.HT2012.deathrally.Game.GameModel;
 
 public class Player {
+	String name;
+	Vehicle vehicle;
+	int id;
 	
-	
-	public Player() {
+	public Player(String name) {
 		
 	}
 	
@@ -16,11 +18,4 @@ public class Player {
 		return null;
 	}
 	
-	public void moveVehicle(Direction direction) {
-		
-	}
-
-	public void setHandBrakeOn() {
-		// TODO Auto-generated method stub
-	}
 }
