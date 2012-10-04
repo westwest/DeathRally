@@ -13,7 +13,7 @@ import android.util.Log;
  * For now mostly based on a tutorial, as I understood it the code is public domain.
  * http://www.jayway.com/2009/12/03/opengl-es-tutorial-for-android-part-i/
  * 
- * @author johves
+ * @author Johannes Vestlund
  *
  */
 
@@ -53,8 +53,7 @@ public class GameRenderer implements Renderer {
 		//GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
 		gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
 		gl.glLoadIdentity();
-		gl.glTranslatef(0, 0, -8);
-		
+		gl.glTranslatef(0, 0, -10);
 		t.draw(gl);
 		
 		Log.d(TAG, "drawing frame");
