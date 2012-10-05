@@ -14,6 +14,9 @@ public class GameModel implements Runnable {
 		// TODO
 	}
 	
+	public void update() {
+		// TODO
+	}
 //	public void movePlayerVehicle(Player player, Direction direction) {
 //		player.moveVehicle(direction);
 //	}
