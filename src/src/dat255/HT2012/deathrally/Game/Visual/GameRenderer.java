@@ -26,6 +26,8 @@ public class GameRenderer implements Renderer {
 	public GameRenderer(ArrayList<VisualEntity> visualEntities){
 		drawObjs = visualEntities;
 	}
+	
+	//TriangleView t = T
 
 	//A bit of confusion of which OpenGL-version to use. For now 1.x.
 	public void onDrawFrame(GL10 gl) {
@@ -36,19 +38,22 @@ public class GameRenderer implements Renderer {
 		
 		gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
 		gl.glLoadIdentity();
-		gl.glTranslatef(0, 0, -10);
+		gl.glTranslatef(0, 0, -1);
+		
+		
+		
 		
 		for(VisualEntity drawObj : drawObjs){
 			drawObj.draw(gl);
 		}
-		
 	}
 
 	public void onSurfaceChanged(GL10 gl, int width, int height) {
 		gl.glViewport(0, 0, width, height);
 		gl.glMatrixMode(GL10.GL_PROJECTION);
 		gl.glLoadIdentity();
-		GLU.gluPerspective(gl, 45.0f, (float) width/ (float) height, 0.1f, 100.0f);
+		//GLU.gluPerspective(gl, 45.0f, (float) width/ (float) height, 0.1f, 100.0f);
+		gl.glOrthof(0, width, height, 0, -1, 1);
 		gl.glMatrixMode(GL10.GL_MODELVIEW);
 		gl.glLoadIdentity();
 	}

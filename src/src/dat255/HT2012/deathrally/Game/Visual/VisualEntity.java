@@ -5,12 +5,9 @@ import java.util.Observer;
 
 import javax.microedition.khronos.opengles.GL10;
 
-public abstract class VisualEntity implements Observer {
+public abstract class VisualEntity {
 
 	private GL10 gl;
 	
-	@Override
-	public void update(Observable observable, Object data) {}
-	
-	public void draw(GL10 gl){}
+	public abstract void draw(GL10 gl);
 }
