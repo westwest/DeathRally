@@ -76,7 +76,7 @@ public class TriangleView extends VisualEntity {
 		if(observable instanceof Vehicle){
 			Vehicle vehicle = (Vehicle) observable;
 			if(event.equals(GameAction.TURN)){
-					rAngle = vehicle.getTurnAngle();
+					rAngle = vehicle.getAngle();
 			}
 		}
 	}

@@ -11,12 +11,12 @@ public class Vehicle extends MovableEntity {
 	public void accelerate(int intensity){};
 	
 	public void turn(int angle){
-		this.angle = angle;
+		this.angle += angle;
 		setChanged();
 		notifyObservers(GameAction.TURN);
 	}
 	
-	public float getTurnAngle(){
+	public float getAngle(){
 		return angle;
 	}
 	
