@@ -1,8 +1,17 @@
 package dat255.HT2012.deathrally.Game.Visual.Controls;
 
+import java.nio.IntBuffer;
 import java.util.Observable;
 
+import javax.microedition.khronos.opengles.GL;
+import javax.microedition.khronos.opengles.GL11;
+
+import android.opengl.GLES11;
+import android.opengl.GLSurfaceView.Renderer;
+import android.opengl.GLU;
+
 import dat255.HT2012.deathrally.Game.GameModel.Vehicle;
+import dat255.HT2012.deathrally.Game.Visual.GameRenderer;
 
 
 public class Joystick {
@@ -11,11 +20,20 @@ public class Joystick {
 	float radius;
 	Vehicle controlledCar;
 	
-	public Joystick(Vehicle controlledCar, float centerX, float centerY, float radius){
+	public Joystick(Vehicle controlledCar, float centerX, float centerY, float radius, GameRenderer renderer){
 		this.controlledCar = controlledCar;
-		this.centerX = centerX;
+		float[] coords = new float[3];
+		
+		GLU.gluProject(centerX, centerY, 0, renderer.getModelMatrix(), 0, renderer.getProjectionMatrix(), 0, renderer.getViewportMatrix(), 0, coords, 0);
+		System.out.println("COORDS: "+coords[0]+", "+coords[1]);
+		this.centerX = 0;
 		this.centerY = centerY;
 		this.radius = radius;
+	}
+	
+	public void reset(){
+		controlledCar.accelerate(0);
+		controlledCar.turn(0);
 	}
 	
 	public void translateToAction(float px, float py){

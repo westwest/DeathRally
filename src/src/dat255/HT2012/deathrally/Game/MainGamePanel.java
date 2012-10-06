@@ -6,9 +6,11 @@ import dat255.HT2012.deathrally.Game.GameModel.Entity;
 import dat255.HT2012.deathrally.Game.GameModel.Vehicle;
 import dat255.HT2012.deathrally.Game.Visual.CircleView;
 import dat255.HT2012.deathrally.Game.Visual.GameRenderer;
+import dat255.HT2012.deathrally.Game.Visual.JoystickView;
 import dat255.HT2012.deathrally.Game.Visual.LessonOneRenderer;
 import dat255.HT2012.deathrally.Game.Visual.TriangleView;
 import dat255.HT2012.deathrally.Game.Visual.VisualEntity;
+import dat255.HT2012.deathrally.Game.Visual.VisualVehicle;
 import dat255.HT2012.deathrally.Game.Visual.Controls.Joystick;
 import android.content.Context;
 import android.opengl.GLSurfaceView;
@@ -33,26 +35,27 @@ public class MainGamePanel extends GLSurfaceView  {
 	public MainGamePanel(Context context) {		
 		super(context);
 		
-		//create Entities
-		ArrayList<VisualEntity> visualEntities = new ArrayList<VisualEntity>();
-		TriangleView Vcar = new TriangleView(20f, 30f, 100f, 100f);
-		visualEntities.add(Vcar);
-		CircleView Vjoystick = new CircleView(100f,300f,50f);
-		visualEntities.add(Vjoystick);
-		
-		Vehicle car = new Vehicle();
-		car.addObserver(Vcar);
-		
-		joystick = new Joystick(car, 100f, 300f,50f);
-		
-		//Dont target OpenGL ES 2.0 just yet.
+		//Dont target OpenGL 2.0 just yet
 		//setEGLContextClientVersion(2);
-		gameRenderer = new GameRenderer(visualEntities);		
+		gameRenderer = new GameRenderer();		
 		setRenderer(gameRenderer);
 		
 		getHolder().addCallback(this);		
 		setFocusable(true);
 		setFocusableInTouchMode(true);
+		
+		//create Entities
+		ArrayList<VisualEntity> visualEntities = new ArrayList<VisualEntity>();
+		VisualVehicle vCar = new VisualVehicle(0.0f, 00f);
+		visualEntities.add(vCar);
+		JoystickView Vjoystick = new JoystickView(-1.6f, 0.6f,0.2f);
+		visualEntities.add(Vjoystick);
+		
+		Vehicle car = new Vehicle();
+		car.addObserver(vCar);
+		gameRenderer.addDrawObj(visualEntities);
+		
+		joystick = new Joystick(car, -1.6f, 0.6f,0.2f, gameRenderer);
 		
 	}
 	
@@ -66,6 +69,9 @@ public class MainGamePanel extends GLSurfaceView  {
 	    float py = e.getY();
 
 	    switch (e.getAction()) {
+	    	case MotionEvent.ACTION_UP:
+	    		joystick.reset();
+	    		break;	    		
 	        case MotionEvent.ACTION_MOVE:
 
 	        	/*
