@@ -14,6 +14,7 @@ import dat255.HT2012.deathrally.Game.Visual.VisualVehicle;
 import dat255.HT2012.deathrally.Game.Visual.Controls.Joystick;
 import android.content.Context;
 import android.opengl.GLSurfaceView;
+import android.opengl.GLU;
 import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
@@ -48,14 +49,14 @@ public class MainGamePanel extends GLSurfaceView  {
 		ArrayList<VisualEntity> visualEntities = new ArrayList<VisualEntity>();
 		VisualVehicle vCar = new VisualVehicle(0.0f, 00f);
 		visualEntities.add(vCar);
-		JoystickView Vjoystick = new JoystickView(-1.6f, 0.6f,0.2f);
+		JoystickView Vjoystick = new JoystickView(-1.6f, 0.6f,0.3f);
 		visualEntities.add(Vjoystick);
 		
 		Vehicle car = new Vehicle();
 		car.addObserver(vCar);
 		gameRenderer.addDrawObj(visualEntities);
 		
-		joystick = new Joystick(car, -1.6f, 0.6f,0.2f, gameRenderer);
+		joystick = new Joystick(car, -1.6f, 0.6f,0.3f, gameRenderer);
 		
 	}
 	

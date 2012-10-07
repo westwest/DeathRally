@@ -34,8 +34,6 @@ public class TriangleView extends Mesh {
 	
 	public TriangleView(float width, float height, float px, float py){
 		setDrawMethod(GL10.GL_TRIANGLES);
-		//this.px = px;
-		//this.py = py;
 		
 		//Not found a better way of doing it yet...
 		//Vertex 1 [bottom left]

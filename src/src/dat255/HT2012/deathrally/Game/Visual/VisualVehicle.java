@@ -25,14 +25,15 @@ public class VisualVehicle extends VisualEntity implements Observer {
 		this.representation = new TriangleView(0.1f, 0.2f, px, py);
 	}
 	
+	
 	@Override
 	public void update(Observable observable, Object event) {
-		System.out.println("Received");
 		if(observable instanceof Vehicle){
 			Vehicle vehicle = (Vehicle) observable;
 			if(event.equals(GameAction.TURN)){
 				wheelAngle = vehicle.getAngle();
-				rate = vehicle.getTurningCapability();
+				representation.rotate(wheelAngle);
+				//rate = vehicle.getTurningCapability();
 			} else if(event.equals(GameAction.ACCELERATE)){
 				velocity = vehicle.getVelocity();
 			}

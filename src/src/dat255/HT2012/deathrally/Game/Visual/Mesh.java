@@ -15,7 +15,8 @@ public class Mesh {
 	private int drawMethod;
 	
 	//Translation and rotation params
-	private float x,y,z;
+	private float x,y;
+	private float z=0;
 	private float rz;
 	
 	public Mesh(){
@@ -40,7 +41,7 @@ public class Mesh {
 		
 		gl.glPushMatrix();
 		gl.glTranslatef(x, y, z);
-		gl.glRotatef(rz, 0, 0, 1);
+		gl.glRotatef(rz+180, 0, 0, 1);
 		gl.glDrawElements(drawMethod, nrIndices, GL10.GL_UNSIGNED_SHORT, indexBuffer);
 		gl.glPopMatrix();	
 		
@@ -67,5 +68,10 @@ public class Mesh {
 	
 	protected void setDrawMethod(int drawMethod){
 		this.drawMethod = drawMethod;
+	}
+	
+	public void rotate(float angle){
+		System.out.println("rotate!");
+		rz += angle;
 	}
 }

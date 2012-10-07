@@ -12,6 +12,7 @@ import android.opengl.GLU;
 
 import dat255.HT2012.deathrally.Game.GameModel.Vehicle;
 import dat255.HT2012.deathrally.Game.Visual.GameRenderer;
+import dat255.HT2012.deathrally.Game.Visual.MatrixTracker.MatrixGrabber;
 
 
 public class Joystick {
@@ -22,13 +23,14 @@ public class Joystick {
 	
 	public Joystick(Vehicle controlledCar, float centerX, float centerY, float radius, GameRenderer renderer){
 		this.controlledCar = controlledCar;
-		float[] coords = new float[3];
+		float[] coords = new float[16];
 		
-		GLU.gluProject(centerX, centerY, 0, renderer.getModelMatrix(), 0, renderer.getProjectionMatrix(), 0, renderer.getViewportMatrix(), 0, coords, 0);
-		System.out.println("COORDS: "+coords[0]+", "+coords[1]);
-		this.centerX = 0;
-		this.centerY = centerY;
-		this.radius = radius;
+		GLU.gluProject(centerX, centerY, 0, renderer.getModelViewMatrix(), 0, renderer.getProjectionMatrix(), 0, renderer.getViewport(), 0, coords,0);
+		System.out.println("Joystick model COORDs: "+centerX+", "+centerY);
+		System.out.println("Joystick screen COORDs: "+ coords[1]+", "+coords[0]*-1);
+		this.centerX = coords[1];
+		this.centerY = coords[0]*-1;
+		this.radius = 150;
 	}
 	
 	public void reset(){
