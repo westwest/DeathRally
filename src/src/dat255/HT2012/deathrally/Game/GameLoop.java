@@ -10,13 +10,9 @@ import dat255.HT2012.deathrally.Game.GameModel.*;
 public class GameLoop extends Thread {
 	//private SurfaceHolder surfaceHolder;
 	private MainGamePanel gamePanel;
-<<<<<<< Upstream, based on Joystick2
-	private boolean running;
-=======
 	private GameModel model;
 	private boolean isRunning = false;
 	//Useful for exception [note to self, Johannes]
->>>>>>> 425d9a6 Made changes to game loop and added placeholder 'update' method in GameModel.
 	private static final String TAG = GameLoop.class.getSimpleName();
 
 	

@@ -20,7 +20,7 @@ public class DeathRallyGame extends Activity {
 		
 		Log.d(TAG, "game activity created");
 		view = new MainGamePanel(this);
-		gameLoop = new GameLoop(view.getHolder(), view);
+		//gameLoop = new GameLoop(view.getHolder(), view);
 		
 		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		
