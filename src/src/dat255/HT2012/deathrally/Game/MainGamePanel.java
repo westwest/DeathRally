@@ -2,6 +2,7 @@ package dat255.HT2012.deathrally.Game;
 
 import java.util.ArrayList;
 
+import dat255.HT2012.deathrally.Game.GameModel.Direction;
 import dat255.HT2012.deathrally.Game.GameModel.Entity;
 import dat255.HT2012.deathrally.Game.GameModel.Vehicle;
 import dat255.HT2012.deathrally.Game.Visual.CircleView;
@@ -23,40 +24,37 @@ import android.view.WindowManager;
 
 //Basic design taken from "http://obviam.net/index.php/a-very-basic-the-game-loop-for-android/"
 public class MainGamePanel extends GLSurfaceView  {
-	
-	//private LessonOneRenderer gameRenderer;
-	private GameRenderer gameRenderer;
-	
 	private static final String TAG = MainGamePanel.class.getSimpleName();
+	private GameRenderer gameRenderer;
+	// Holds the current control direction
+	volatile Direction controlDirection;
+	
+
 	float mPreviousX;
 	float mPreviousY;
 	
 	Joystick joystick;
 	
-	public MainGamePanel(Context context) {		
+	public MainGamePanel(Context context, GameRenderer gameRenderer) {		
 		super(context);
+		
+		this.gameRenderer = gameRenderer;
 		
 		//Dont target OpenGL 2.0 just yet
 		//setEGLContextClientVersion(2);
-		gameRenderer = GameRenderer.getInstance();		
+	
 		setRenderer(gameRenderer);
 		
 		getHolder().addCallback(this);		
 		setFocusable(true);
 		setFocusableInTouchMode(true);
+
 		
-		//create Entities
-		ArrayList<VisualEntity> visualEntities = new ArrayList<VisualEntity>();
-		VisualVehicle vCar = new VisualVehicle(0.0f, 00f);
-		visualEntities.add(vCar);
-		
-		Vehicle car = new Vehicle();
-		car.addObserver(vCar);
-		gameRenderer.addDrawObj(visualEntities);
-		
-		joystick = new Joystick(car, this);
+		//joystick = new Joystick(car, this);
 	}
 	
+	
+	// !!- Remove this after adjusting joystick
 	public void addVisualObj(VisualEntity ve){
 		gameRenderer.addDrawObj(ve);
 	}

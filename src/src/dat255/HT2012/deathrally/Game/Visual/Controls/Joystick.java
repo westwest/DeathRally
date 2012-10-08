@@ -46,7 +46,7 @@ public class Joystick {
 				GameRenderer.getProjectionMatrix(), 0, GameRenderer.getViewport(), 0, coordsEdge, 0);
 		
 		float glRadius = coordsOrigo[0] - coordsEdge[0];
-		vJoystick = new JoystickView(coordsOrigo[0], coordsOrigo[1], glRadius);
+		vJoystick = new JoystickView(coordsOrigo[0], coordsOrigo[1], glRadius, null);
 		context.addVisualObj(vJoystick);
 	}
 	

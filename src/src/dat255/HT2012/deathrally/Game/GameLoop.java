@@ -8,25 +8,28 @@ import dat255.HT2012.deathrally.Game.GameModel.*;
  * Game loop, basic design taken from "http://obviam.net/index.php/a-very-basic-the-game-loop-for-android/"
  */
 public class GameLoop extends Thread {
+	private static final String TAG = GameLoop.class.getSimpleName();
+	
 	//private SurfaceHolder surfaceHolder;
 	private MainGamePanel gamePanel;
 	private GameModel model;
 	private boolean isRunning = false;
-	//Useful for exception [note to self, Johannes]
-	private static final String TAG = GameLoop.class.getSimpleName();
+
 
 	
-	public GameLoop(SurfaceHolder surfaceHolder, MainGamePanel gamePanel, GameModel model) {
+	public GameLoop(SurfaceHolder surfaceHolder, GameModel model) {
 		super();
 		//*will probably not be used here* this.surfaceHolder = surfaceHolder;
 		this.gamePanel = gamePanel;
 		this.model = model;
+
 
 	}
 
 	// game state
 	public void setRunning(boolean isRunning) {
 		this.isRunning = isRunning;
+	
 	}
 	
 	//Constant Game Speed independent of Variable FPS method taken from

@@ -1,5 +1,7 @@
 package dat255.HT2012.deathrally.Game.GameModel;
 
+import dat255.HT2012.deathrally.Game.Visual.VisualEntity;
+
 public class Vehicle extends MovableEntity {
 	private float velocity = 0;
 	private float maxVelocity = 10;
@@ -8,7 +10,9 @@ public class Vehicle extends MovableEntity {
 	private float turningCapability = 10;
 	
 	
-	public Vehicle() {};
+	public Vehicle(VisualEntity visualEntity) {
+		super(visualEntity);
+	};
 	
 	public void move(Direction direction) {};
 	
