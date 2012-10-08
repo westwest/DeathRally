@@ -2,11 +2,13 @@ package dat255.HT2012.deathrally.Game;
 
 
 import android.app.Activity;
+import android.graphics.drawable.LevelListDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
 import dat255.HT2012.deathrally.Game.GameModel.*;
 import dat255.HT2012.deathrally.Game.Visual.*;
+import dat255.HT2012.deathrally.Game.Constants.LevelName;
 
 public class DeathRallyGame extends Activity {
 	MainGamePanel view;
@@ -20,7 +22,8 @@ public class DeathRallyGame extends Activity {
 		
 		Log.d(TAG, "game activity created");
 		view = new MainGamePanel(this);
-		//gameLoop = new GameLoop(view.getHolder(), view);
+		GameModel model = new GameModel(LevelName.LEVEL_1);
+		gameLoop = new GameLoop(view.getHolder(), view, model);
 		
 		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		

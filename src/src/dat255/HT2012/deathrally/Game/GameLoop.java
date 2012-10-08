@@ -49,7 +49,9 @@ public class GameLoop extends Thread {
 		loops = 0;
         	while(System.nanoTime() > next_game_tick && loops < MAX_FRAMESKIP) {
 	            model.update();
-	
+	            //debug
+	            Log.d(TAG, "model update count: " + loops + " time: " + System.nanoTime());
+	            
 	            next_game_tick += SKIP_TICKS;
 	            loops++;
 	        }
@@ -61,7 +63,9 @@ public class GameLoop extends Thread {
 	         *( interpolation );
 	        **/
 	        
-	        gamePanel.requestRender();	        				        		
+	        gamePanel.requestRender();	        
+	        //debug
+            Log.d(TAG, "render update time: " + System.nanoTime());
 		}
 	}
 }

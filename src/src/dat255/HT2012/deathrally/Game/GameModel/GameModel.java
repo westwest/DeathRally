@@ -1,13 +1,15 @@
 package dat255.HT2012.deathrally.Game.GameModel;
 
+import android.util.Log;
+import dat255.HT2012.deathrally.Game.DeathRallyGame;
 import dat255.HT2012.deathrally.Game.Constants.LevelName;
 
 public class GameModel implements Runnable {
 	private Player player;
-	
+	private static final String TAG = GameModel.class.getSimpleName();
 	
 	public GameModel(LevelName name) {
-		// TODO
+		Log.d(TAG, "game model created");
 	}
 	
 	public void sendAction(GameAction action) {
