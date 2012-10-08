@@ -7,46 +7,65 @@ import javax.microedition.khronos.opengles.GL;
 import javax.microedition.khronos.opengles.GL11;
 
 import android.opengl.GLES11;
+import android.opengl.GLSurfaceView;
 import android.opengl.GLSurfaceView.Renderer;
 import android.opengl.GLU;
+import android.view.View;
 
+import dat255.HT2012.deathrally.Game.MainGamePanel;
 import dat255.HT2012.deathrally.Game.GameModel.Vehicle;
 import dat255.HT2012.deathrally.Game.Visual.GameRenderer;
+import dat255.HT2012.deathrally.Game.Visual.JoystickView;
 import dat255.HT2012.deathrally.Game.Visual.MatrixTracker.MatrixGrabber;
 
 
 public class Joystick {
-	float centerX;
-	float centerY;
-	float radius;
-	Vehicle controlledCar;
+	private MainGamePanel context;
+	private float centerX;
+	private float centerY;
+	private int radius = 100;
+	private Vehicle controlledCar;
+	private JoystickView vJoystick;
 	
-	public Joystick(Vehicle controlledCar, float centerX, float centerY, float radius, GameRenderer renderer){
+	public Joystick(Vehicle controlledCar, MainGamePanel context){
 		this.controlledCar = controlledCar;
-		float[] coords = new float[16];
+		this.context = context;
+	}
+	
+	public void createUI(float px, float py){
+		this.centerX = px;
+		this.centerY = py;
+		float[] coordsOrigo = new float[16];
+		int[] viewport = GameRenderer.getViewport();
+		float posY = viewport[3] - py;
 		
-		GLU.gluProject(centerX, centerY, 0, renderer.getModelViewMatrix(), 0, renderer.getProjectionMatrix(), 0, renderer.getViewport(), 0, coords,0);
-		System.out.println("Joystick model COORDs: "+centerX+", "+centerY);
-		System.out.println("Joystick screen COORDs: "+ coords[1]+", "+coords[0]*-1);
-		this.centerX = coords[1];
-		this.centerY = coords[0]*-1;
-		this.radius = 150;
+		GLU.gluUnProject(px, posY, 0, GameRenderer.getModelViewMatrix(), 0,
+				GameRenderer.getProjectionMatrix(), 0, viewport, 0, coordsOrigo, 0);
+		float[] coordsEdge = new float[16];
+		GLU.gluUnProject(px+radius, posY, 0, GameRenderer.getModelViewMatrix(), 0, 
+				GameRenderer.getProjectionMatrix(), 0, GameRenderer.getViewport(), 0, coordsEdge, 0);
+		
+		float glRadius = coordsOrigo[0] - coordsEdge[0];
+		vJoystick = new JoystickView(coordsOrigo[0], coordsOrigo[1], glRadius);
+		context.addVisualObj(vJoystick);
 	}
 	
 	public void reset(){
 		controlledCar.accelerate(0);
 		controlledCar.turn(0);
+		if(vJoystick != null)
+			vJoystick.destroy();
+		vJoystick = null;
 	}
 	
-	public void translateToAction(float px, float py){
-		System.out.println(px + ", " +py);
+	public void catchAction(float px, float py){
 		
 		if(inCircle(px,py)){
 			float dx = px-centerX;
 			float dy = py-centerY;
 			
-			//controlledCar.accelerate(dy/radius);
-			controlledCar.turn(dx/radius);
+			controlledCar.accelerate(dy/radius);
+			controlledCar.turn(2*dx/radius);
 		}
 	}
 

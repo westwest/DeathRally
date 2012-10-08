@@ -38,7 +38,7 @@ public class MainGamePanel extends GLSurfaceView  {
 		
 		//Dont target OpenGL 2.0 just yet
 		//setEGLContextClientVersion(2);
-		gameRenderer = new GameRenderer();		
+		gameRenderer = GameRenderer.getInstance();		
 		setRenderer(gameRenderer);
 		
 		getHolder().addCallback(this);		
@@ -49,15 +49,16 @@ public class MainGamePanel extends GLSurfaceView  {
 		ArrayList<VisualEntity> visualEntities = new ArrayList<VisualEntity>();
 		VisualVehicle vCar = new VisualVehicle(0.0f, 00f);
 		visualEntities.add(vCar);
-		JoystickView Vjoystick = new JoystickView(-1.6f, 0.6f,0.3f);
-		visualEntities.add(Vjoystick);
 		
 		Vehicle car = new Vehicle();
 		car.addObserver(vCar);
 		gameRenderer.addDrawObj(visualEntities);
 		
-		joystick = new Joystick(car, -1.6f, 0.6f,0.3f, gameRenderer);
-		
+		joystick = new Joystick(car, this);
+	}
+	
+	public void addVisualObj(VisualEntity ve){
+		gameRenderer.addDrawObj(ve);
 	}
 	
 	@Override
@@ -68,34 +69,21 @@ public class MainGamePanel extends GLSurfaceView  {
 		
 	    float px = e.getX();
 	    float py = e.getY();
-
-	    switch (e.getAction()) {
-	    	case MotionEvent.ACTION_UP:
-	    		joystick.reset();
-	    		break;	    		
+	    
+	    
+	    switch (e.getAction()) {	    	
+	    	case MotionEvent.ACTION_DOWN:
+	    		if(px > 100 && px < 300){
+	    			joystick.createUI(px,py);
+	    		}
+    			break;
 	        case MotionEvent.ACTION_MOVE:
-
-	        	/*
-	            float dx = x - mPreviousX;
-	            float dy = y - mPreviousY;
-
-	            // reverse direction of rotation above the mid-line
-	            if (y > getHeight() / 2) {
-	              dx = dx * -1 ;
-	            }
-
-	            // reverse direction of rotation to left of the mid-line
-	            if (x < getWidth() / 2) {
-	              dy = dy * -1 ;
-	            }
-	            //gameRenderer.mAngle += (dx + dy) * 180.0f / 320;//TOUCH_SCALE_FACTOR;  // = 
-	             * 
-	             */
-	        	joystick.translateToAction(px, py);
+	        	joystick.catchAction(px, py);
+	        	break;
+	        case MotionEvent.ACTION_UP:
+	    		joystick.reset();
+	    		break;
 	    }
-
-	    //mPreviousX = x;
-	    //mPreviousY = y;
 	    return true;
 	}
 }

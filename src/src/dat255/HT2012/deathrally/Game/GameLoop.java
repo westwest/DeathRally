@@ -10,7 +10,6 @@ public class GameLoop extends Thread {
 	private SurfaceHolder surfaceHolder;
 	private MainGamePanel gamePanel;
 	private boolean running;
-	//Useful for exception [note to self, Johannes]
 	private static final String TAG = GameLoop.class.getSimpleName();
 
 	

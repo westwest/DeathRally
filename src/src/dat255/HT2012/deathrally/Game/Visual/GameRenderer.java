@@ -8,6 +8,8 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 import javax.microedition.khronos.opengles.GL11;
 
+import dat255.HT2012.deathrally.Game.GameModel.Players;
+
 import android.opengl.GLES10;
 import android.opengl.GLES11;
 import android.opengl.GLES20;
@@ -26,11 +28,29 @@ import android.util.Log;
  */
 
 public class GameRenderer implements Renderer {
-	private ArrayList<VisualEntity> drawObjs = new ArrayList<VisualEntity>();
+	private static volatile GameRenderer instance;
+	private static ArrayList<VisualEntity> drawObjs = new ArrayList<VisualEntity>();
 	
 	private static float[] modelViewMatrix = new float[16];
 	private static float[] projectionMatrix = new float[16];
 	private static int[] viewport = new int[16];
+	
+	private GameRenderer(){
+	}
+	
+	/**
+	 * Can only have one renderer of this type!
+	 */
+	public static GameRenderer getInstance(){
+		if(instance == null){
+			synchronized( GameRenderer .class){
+				if(instance == null){
+					instance = new GameRenderer();
+				}
+			}
+		}	
+		return instance;
+	}
 	
 	public void addDrawObj(VisualEntity ve){
 		drawObjs.add(ve);
@@ -83,13 +103,18 @@ public class GameRenderer implements Renderer {
 		gl.glHint(GL10.GL_PERSPECTIVE_CORRECTION_HINT, GL10.GL_NICEST);
 	}
 	
-	public int[] getViewport(){
+	public static void disconnect(VisualEntity ve){
+		System.out.println("disconnect");
+		drawObjs.remove(ve);
+	}
+	
+	public static int[] getViewport(){
 		return viewport;
 	}
-	public float[] getProjectionMatrix(){
+	public static float[] getProjectionMatrix(){
 		return projectionMatrix;
 	}
-	public float[] getModelViewMatrix(){
+	public static float[] getModelViewMatrix(){
 		return modelViewMatrix;
 	}
 	

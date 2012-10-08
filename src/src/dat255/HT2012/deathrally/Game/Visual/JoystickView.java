@@ -13,4 +13,12 @@ public class JoystickView extends VisualEntity{
 	public void draw(GL10 gl) {
 		boundary.draw(gl);	
 	}
+	
+	public void destroy(){
+		GameRenderer.disconnect(this);
+	}
+	
+	public String toString(){
+		return "JoystickView";
+	}
 }

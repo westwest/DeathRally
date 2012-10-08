@@ -25,6 +25,10 @@ public class VisualVehicle extends VisualEntity implements Observer {
 		this.representation = new TriangleView(0.1f, 0.2f, px, py);
 	}
 	
+	public void move(){
+		
+	}
+	
 	
 	@Override
 	public void update(Observable observable, Object event) {

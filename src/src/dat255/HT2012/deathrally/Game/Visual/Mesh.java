@@ -71,7 +71,6 @@ public class Mesh {
 	}
 	
 	public void rotate(float angle){
-		System.out.println("rotate!");
 		rz += angle;
 	}
 }
