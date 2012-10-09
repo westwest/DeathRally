@@ -20,8 +20,9 @@ import android.opengl.GLU;
 import android.util.Log;
 
 /**
- * For now mostly based on a tutorial, as I understood it the code is public domain.
- * http://www.jayway.com/2009/12/03/opengl-es-tutorial-for-android-part-i/
+ * The class GameRenderer provides the essential rendering functionality. The renderer should only 
+ * appear as one instance during runtime, so Singleton pattern is used. This implies that getInstance()
+ * should be used instead of constructor.
  * 
  * @author Johannes Vestlund
  *
