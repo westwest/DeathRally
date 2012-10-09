@@ -7,6 +7,13 @@ import java.nio.ShortBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
+/**
+ * The Mesh class serves as base-class for all shapes. Drawing primitives like circles and 
+ * triangles are derived from this class. It provides a reusable 2D drawing pattern that 
+ * allows rotation and translation, and setters for vertices and indices.
+ * @author Johannes Westlund
+ *
+ */
 public class Mesh {
 	private FloatBuffer vertexBuffer;
 	private ShortBuffer indexBuffer;
