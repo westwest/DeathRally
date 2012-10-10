@@ -26,6 +26,8 @@ import javax.microedition.khronos.opengles.GL10;
 
 import dat255.HT2012.deathrally.Game.GameModel.GameAction;
 import dat255.HT2012.deathrally.Game.GameModel.Vehicle;
+import dat255.HT2012.deathrally.Game.Graphics.Mesh;
+import dat255.HT2012.deathrally.Game.Graphics.Triangle;
 
 public class VisualVehicle extends VisualEntity implements Observer {
 	private float px;
@@ -41,7 +43,7 @@ public class VisualVehicle extends VisualEntity implements Observer {
 	public VisualVehicle(float px, float py){
 		this.px = px;
 		this.py = py;
-		this.representation = new TriangleView(0.1f, 0.2f, px, py);
+		this.representation = new Triangle(0.1f, 0.2f, px, py);
 	}
 	
 	public void move(){

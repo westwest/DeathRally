@@ -17,7 +17,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package dat255.HT2012.deathrally.Game.Visual;
+package dat255.HT2012.deathrally.Game.Graphics;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -26,13 +26,14 @@ import java.nio.ShortBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
-public class CircleView extends Mesh {
+
+public class Circle extends Mesh {
 		private int nrPoints = 30;
 		private float[] vertices = new float[nrPoints *3];
 		private short[] indices = new short[nrPoints];
 		
 	
-	public CircleView(float px, float py, float radius){
+	public Circle(float px, float py, float radius){
 		super(px,py);
 		
 		double relAngle = Math.pow(nrPoints, -1)*2*Math.PI;

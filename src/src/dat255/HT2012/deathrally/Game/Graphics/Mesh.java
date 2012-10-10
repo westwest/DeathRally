@@ -17,7 +17,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package dat255.HT2012.deathrally.Game.Visual;
+package dat255.HT2012.deathrally.Game.Graphics;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

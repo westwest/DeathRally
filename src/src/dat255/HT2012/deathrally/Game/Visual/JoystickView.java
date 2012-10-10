@@ -21,11 +21,13 @@ package dat255.HT2012.deathrally.Game.Visual;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import dat255.HT2012.deathrally.Game.Graphics.Circle;
+
 public class JoystickView extends VisualEntity{
-	CircleView boundary;
+	Circle boundary;
 	
 	public JoystickView(float px, float py, float radius){
-		boundary = new CircleView(px,py,radius);
+		boundary = new Circle(px,py,radius);
 	}
 
 	@Override

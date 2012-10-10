@@ -17,7 +17,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package dat255.HT2012.deathrally.Game.Visual;
+package dat255.HT2012.deathrally.Game.Graphics;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -43,15 +43,15 @@ import android.util.Log;
  * @author Johannes Vestlund
  *
  */
-public class TriangleView extends Mesh {
-	private static final String TAG = TriangleView.class.getSimpleName();
+public class Triangle extends Mesh {
+	private static final String TAG = Triangle.class.getSimpleName();
 	//Matrix-stuff and related
 	private float vertices[] = new float[9];
 	private short indices[] = {
 			0,1,2
 	};
 	
-	public TriangleView(float width, float height, float px, float py){
+	public Triangle(float width, float height, float px, float py){
 		setDrawMethod(GL10.GL_TRIANGLES);
 		
 		//Not found a better way of doing it yet...
