@@ -22,6 +22,8 @@ package dat255.HT2012.deathrally.Game;
 import java.util.ArrayList;
 
 import dat255.HT2012.deathrally.Game.GameModel.Entity;
+import dat255.HT2012.deathrally.Game.GameModel.GameAction;
+import dat255.HT2012.deathrally.Game.GameModel.Player;
 import dat255.HT2012.deathrally.Game.GameModel.Vehicle;
 import dat255.HT2012.deathrally.Game.Visual.CircleView;
 import dat255.HT2012.deathrally.Game.Visual.GameRenderer;
@@ -51,6 +53,7 @@ public class MainGamePanel extends GLSurfaceView  {
 	float mPreviousY;
 	
 	Joystick joystick;
+	Player user;
 	
 	public MainGamePanel(Context context) {		
 		super(context);
@@ -73,7 +76,7 @@ public class MainGamePanel extends GLSurfaceView  {
 		car.addObserver(vCar);
 		gameRenderer.addDrawObj(visualEntities);
 		
-		joystick = new Joystick(car, this);
+		joystick = new Joystick(user, this);
 	}
 	
 	public void addVisualObj(VisualEntity ve){
@@ -104,6 +107,11 @@ public class MainGamePanel extends GLSurfaceView  {
 	    		break;
 	    }
 	    return true;
+	}
+
+	public void recieveAction(Player actor, GameAction action, float impulse) {
+		// TODO Auto-generated method stub
+		
 	}
 }
 

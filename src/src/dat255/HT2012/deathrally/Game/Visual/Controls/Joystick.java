@@ -32,6 +32,8 @@ import android.opengl.GLU;
 import android.view.View;
 
 import dat255.HT2012.deathrally.Game.MainGamePanel;
+import dat255.HT2012.deathrally.Game.GameModel.GameAction;
+import dat255.HT2012.deathrally.Game.GameModel.Player;
 import dat255.HT2012.deathrally.Game.GameModel.Vehicle;
 import dat255.HT2012.deathrally.Game.Visual.GameRenderer;
 import dat255.HT2012.deathrally.Game.Visual.JoystickView;
@@ -39,16 +41,22 @@ import dat255.HT2012.deathrally.Game.Visual.MatrixTracker.MatrixGrabber;
 
 
 public class Joystick {
-	private MainGamePanel context;
+	private MainGamePanel controller;
 	private float centerX;
 	private float centerY;
 	private int radius = 100;
 	private Vehicle controlledCar;
 	private JoystickView vJoystick;
+	private Player owner;
 	
-	public Joystick(Vehicle controlledCar, MainGamePanel context){
-		this.controlledCar = controlledCar;
-		this.context = context;
+	/**
+	 * The constructor
+	 * @param owner is the player that are using the joystick, typically the user. 
+	 * @param context is the game-panel responsible for acting controller.
+	 */
+	public Joystick(Player owner, MainGamePanel context){
+		this.owner = owner;
+		this.controller = context;
 	}
 	
 	public void createUI(float px, float py){
@@ -66,25 +74,36 @@ public class Joystick {
 		
 		float glRadius = coordsOrigo[0] - coordsEdge[0];
 		vJoystick = new JoystickView(coordsOrigo[0], coordsOrigo[1], glRadius);
-		context.addVisualObj(vJoystick);
+		controller.addVisualObj(vJoystick);
 	}
 	
+	/**
+	 * When touch-motion is aborted, the user stops touching the screen, the visual view
+	 * of the joystick should disappear and the actions should be reset.
+	 */
 	public void reset(){
-		controlledCar.accelerate(0);
-		controlledCar.turn(0);
+		controller.recieveAction(owner, GameAction.ACCELERATE, 0);
+		controller.recieveAction(owner, GameAction.TURN, 0);
 		if(vJoystick != null)
 			vJoystick.destroy();
 		vJoystick = null;
 	}
 	
+	/**
+	 * When action is dispatched to joystick this method catches it and sends meaningful
+	 * GameActions back.
+	 * 
+	 * @param px x-position of touched pixel.
+	 * @param py y-position of touched pixel.
+	 */
 	public void catchAction(float px, float py){
 		
 		if(inCircle(px,py)){
 			float dx = px-centerX;
 			float dy = py-centerY;
 			
-			controlledCar.accelerate(dy/radius);
-			controlledCar.turn(2*dx/radius);
+			controller.recieveAction(owner, GameAction.ACCELERATE, dy/radius);
+			controller.recieveAction(owner, GameAction.TURN, dx/radius);
 		}
 	}
 
