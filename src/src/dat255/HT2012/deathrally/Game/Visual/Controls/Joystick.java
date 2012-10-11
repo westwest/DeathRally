@@ -19,17 +19,7 @@
 
 package dat255.HT2012.deathrally.Game.Visual.Controls;
 
-import java.nio.IntBuffer;
-import java.util.Observable;
-
-import javax.microedition.khronos.opengles.GL;
-import javax.microedition.khronos.opengles.GL11;
-
-import android.opengl.GLES11;
-import android.opengl.GLSurfaceView;
-import android.opengl.GLSurfaceView.Renderer;
 import android.opengl.GLU;
-import android.view.View;
 
 import dat255.HT2012.deathrally.Game.MainGamePanel;
 import dat255.HT2012.deathrally.Game.GameModel.GameAction;
@@ -37,8 +27,6 @@ import dat255.HT2012.deathrally.Game.GameModel.Player;
 import dat255.HT2012.deathrally.Game.GameModel.Vehicle;
 import dat255.HT2012.deathrally.Game.Visual.GameRenderer;
 import dat255.HT2012.deathrally.Game.Visual.JoystickView;
-import dat255.HT2012.deathrally.Game.Visual.MatrixTracker.MatrixGrabber;
-
 
 public class Joystick {
 	private MainGamePanel controller;
