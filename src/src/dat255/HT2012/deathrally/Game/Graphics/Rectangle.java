@@ -1,8 +1,5 @@
 package dat255.HT2012.deathrally.Game.Graphics;
 
-import java.nio.FloatBuffer;
-import java.nio.ShortBuffer;
-
 import javax.microedition.khronos.opengles.GL10;
 
 public class Rectangle extends Mesh{

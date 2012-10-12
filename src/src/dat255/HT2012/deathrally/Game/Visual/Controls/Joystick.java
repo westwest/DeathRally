@@ -19,12 +19,11 @@
 
 package dat255.HT2012.deathrally.Game.Visual.Controls;
 
-import android.opengl.GLU;
 
+import android.opengl.GLU;
 import dat255.HT2012.deathrally.Game.MainGamePanel;
 import dat255.HT2012.deathrally.Game.GameModel.GameAction;
 import dat255.HT2012.deathrally.Game.GameModel.Player;
-import dat255.HT2012.deathrally.Game.GameModel.Vehicle;
 import dat255.HT2012.deathrally.Game.Visual.GameRenderer;
 import dat255.HT2012.deathrally.Game.Visual.JoystickView;
 
@@ -33,7 +32,6 @@ public class Joystick {
 	private float centerX;
 	private float centerY;
 	private int radius = 100;
-	private Vehicle controlledCar;
 	private JoystickView vJoystick;
 	private Player owner;
 	

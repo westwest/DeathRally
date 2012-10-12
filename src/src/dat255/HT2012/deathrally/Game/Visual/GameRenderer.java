@@ -19,24 +19,14 @@
 
 package dat255.HT2012.deathrally.Game.Visual;
 
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
 import java.util.ArrayList;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 import javax.microedition.khronos.opengles.GL11;
 
-import dat255.HT2012.deathrally.Game.GameModel.Players;
-
-import android.opengl.GLES10;
-import android.opengl.GLES11;
-import android.opengl.GLES20;
 import android.opengl.GLSurfaceView.Renderer;
 import android.opengl.GLU;
-//import android.opengl.GLU;
-//import android.opengl.GLSurfaceView.Renderer;
-import android.util.Log;
 
 /**
  * The class GameRenderer provides the essential rendering functionality. The renderer should only 
@@ -78,7 +68,7 @@ public class GameRenderer implements Renderer {
 	
 	public void addDrawObj(ArrayList<VisualEntity> drawObjs){
 		for(VisualEntity drawObj : drawObjs){
-			this.drawObjs.add(drawObj);
+			drawObjs.add(drawObj);
 		}
 	}
 
@@ -95,7 +85,7 @@ public class GameRenderer implements Renderer {
 		
 		
 		for(VisualEntity drawObj : drawObjs){
-			drawObj.draw(gl);
+			drawObj.display(gl);
 		}
 	}
 
@@ -106,7 +96,6 @@ public class GameRenderer implements Renderer {
 		
 		gl.glLoadIdentity();
 		gl.glOrthof(-aspectRatio, aspectRatio, 1, -1, -1, 1);
-		//GLU.gluPerspective(gl, 45.0f, aspectRatio, 1f, -1f);
 		gl.glMatrixMode(GL10.GL_MODELVIEW);
 		gl.glLoadIdentity();
 		((GL11) gl).glGetIntegerv(GL11.GL_VIEWPORT, viewport, 0);
@@ -124,7 +113,6 @@ public class GameRenderer implements Renderer {
 	}
 	
 	public static void disconnect(VisualEntity ve){
-		System.out.println("disconnect");
 		drawObjs.remove(ve);
 	}
 	

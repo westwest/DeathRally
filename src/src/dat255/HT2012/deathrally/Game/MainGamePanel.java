@@ -20,32 +20,19 @@
 package dat255.HT2012.deathrally.Game;
 
 import java.util.ArrayList;
-
-import dat255.HT2012.deathrally.Game.GameModel.Entity;
 import dat255.HT2012.deathrally.Game.GameModel.GameAction;
 import dat255.HT2012.deathrally.Game.GameModel.Player;
-import dat255.HT2012.deathrally.Game.GameModel.Vehicle;
-import dat255.HT2012.deathrally.Game.Graphics.Circle;
-import dat255.HT2012.deathrally.Game.Graphics.Triangle;
 import dat255.HT2012.deathrally.Game.Visual.GameRenderer;
-import dat255.HT2012.deathrally.Game.Visual.JoystickView;
-import dat255.HT2012.deathrally.Game.Visual.LessonOneRenderer;
 import dat255.HT2012.deathrally.Game.Visual.VisualEntity;
 import dat255.HT2012.deathrally.Game.Visual.VisualVehicle;
 import dat255.HT2012.deathrally.Game.Visual.Controls.Joystick;
 import android.content.Context;
 import android.opengl.GLSurfaceView;
-import android.opengl.GLU;
-import android.util.Log;
-import android.view.Display;
 import android.view.MotionEvent;
-import android.view.SurfaceHolder;
-import android.view.WindowManager;
 
 //Basic design taken from "http://obviam.net/index.php/a-very-basic-the-game-loop-for-android/"
 public class MainGamePanel extends GLSurfaceView  {
-	
-	//private LessonOneRenderer gameRenderer;
+
 	private GameRenderer gameRenderer;
 	
 	private static final String TAG = MainGamePanel.class.getSimpleName();
@@ -71,9 +58,6 @@ public class MainGamePanel extends GLSurfaceView  {
 		ArrayList<VisualEntity> visualEntities = new ArrayList<VisualEntity>();
 		VisualVehicle vCar = new VisualVehicle(0.0f, 00f);
 		visualEntities.add(vCar);
-		
-		Vehicle car = new Vehicle();
-		car.addObserver(vCar);
 		gameRenderer.addDrawObj(visualEntities);
 		
 		joystick = new Joystick(user, this);

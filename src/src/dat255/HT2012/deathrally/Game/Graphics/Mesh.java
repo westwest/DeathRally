@@ -36,7 +36,6 @@ import javax.microedition.khronos.opengles.GL10;
 public class Mesh {
 	private FloatBuffer vertexBuffer;
 	private ShortBuffer indexBuffer;
-	
 	private int nrIndices;
 	private int drawMethod;
 	
@@ -92,11 +91,21 @@ public class Mesh {
 		vertexBuffer.position(0);
 	}
 	
+	public float[] getVertices(){
+		int bufferLength = vertexBuffer.capacity();
+		float[] vertices = new float[bufferLength];
+		for(int i = 0; i<bufferLength; i++)
+			vertices[i] = vertexBuffer.get(i);
+		return vertices;
+	}
+	
 	protected void setDrawMethod(int drawMethod){
 		this.drawMethod = drawMethod;
 	}
 	
-	public void rotate(float angle){
-		rz += angle;
+	public void refresh(float px, float py, Float direction) {
+		this.x = px;
+		this.y = py;
+		this.rz = direction;	
 	}
 }

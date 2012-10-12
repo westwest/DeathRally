@@ -19,21 +19,8 @@
 
 package dat255.HT2012.deathrally.Game.Graphics;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
-import java.nio.ShortBuffer;
-import java.util.Observable;
-import java.util.Observer;
-
-import javax.microedition.khronos.egl.EGL10;
-import javax.microedition.khronos.egl.EGLContext;
 import javax.microedition.khronos.opengles.GL10;
 
-import dat255.HT2012.deathrally.Game.GameModel.GameAction;
-import dat255.HT2012.deathrally.Game.GameModel.Vehicle;
-
-import android.util.Log;
 
 /**
  * Developed from square-class in public domain. There are similarities, but code has been significantly

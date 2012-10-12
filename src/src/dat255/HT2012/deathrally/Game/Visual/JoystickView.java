@@ -31,7 +31,7 @@ public class JoystickView extends VisualEntity{
 	}
 
 	@Override
-	public void draw(GL10 gl) {
+	public void display(GL10 gl) {
 		boundary.draw(gl);	
 	}
 	
