@@ -19,7 +19,7 @@
 
 package dat255.HT2012.deathrally;
 
-import dat255.HT2012.deathrally.Game.DeathRallyGame;
+import dat255.HT2012.deathrally.game.DeathRallyGame;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
