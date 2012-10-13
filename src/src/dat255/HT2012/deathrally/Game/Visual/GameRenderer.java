@@ -69,9 +69,9 @@ public class GameRenderer implements Renderer {
 		drawObjs.add(ve);
 	}
 	
-	public void addDrawObj(ArrayList<VisualEntity> drawObjs){
-		for(VisualEntity drawObj : drawObjs){
-			drawObjs.add(drawObj);
+	public void addDrawObj(ArrayList<VisualEntity> drawObjsList){
+		for(VisualEntity d : drawObjsList){
+			drawObjs.add(d);
 		}
 	}
 
