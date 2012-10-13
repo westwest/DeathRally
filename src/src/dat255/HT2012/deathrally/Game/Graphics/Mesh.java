@@ -42,7 +42,7 @@ public class Mesh {
 	//Translation and rotation params
 	private float x,y;
 	private float z=0;
-	private float rz = 180;
+	private float rz = 0;
 	
 	public Mesh(float x, float y){
 		this.x = x;

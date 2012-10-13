@@ -108,7 +108,7 @@ public class GameRenderer implements Renderer {
 
 	public void onSurfaceCreated(GL10 gl, EGLConfig config) {
 		for(VisualEntity drawObj : drawObjs){
-			//drawObj.loadGLTexture(gl, context);
+			drawObj.loadGLTexture(gl, context);
 		}
 		gl.glClearColor(0.0f, 0.0f, 0.0f, 0.5f);
 		gl.glShadeModel(GL10.GL_SMOOTH);
