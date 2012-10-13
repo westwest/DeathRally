@@ -22,11 +22,15 @@ package dat255.HT2012.deathrally.Game.GameModel;
 import dat255.HT2012.deathrally.Game.Constants.LevelName;
 
 public class GameModel implements Runnable {
+	private Level level;
 	private Player player;
 	
-	
+	public GameModel() {
+		this.level = new Level();
+	}
 	public GameModel(LevelName name) {
 		// TODO
+		
 	}
 	
 	public void sendAction(GameAction action) {
