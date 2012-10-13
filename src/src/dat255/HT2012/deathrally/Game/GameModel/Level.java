@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import dat255.HT2012.deathrally.Game.Vector2D;
-
 public class Level {
 	
 	private List<Entity> entities = new ArrayList<Entity>();
@@ -15,6 +13,20 @@ public class Level {
 	private int playersRacePosition;
 	
 	public Level() {
+		this(new ArrayList<Entity>()); // Defaults to an empty world
+	}
+
+	public Level(Level copy) {
+		this(copy.getEntities());
+	}
+
+	public Level(List<Entity> list) {
+		this.entities = new ArrayList<Entity>();
+		this.gameOver = false;
+		this.hasCompletedRace = false;
+		for (Entity e : list) {
+			this.add(e);
+		}
 	}
 
 	public void add(Entity e) {

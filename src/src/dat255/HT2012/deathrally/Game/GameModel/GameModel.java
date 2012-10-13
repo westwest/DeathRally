@@ -19,26 +19,82 @@
 
 package dat255.HT2012.deathrally.Game.GameModel;
 
-import dat255.HT2012.deathrally.Game.Constants.LevelName;
 
-public class GameModel implements Runnable {
-	private Level level;
-	private Player player;
+public class GameModel {
+	private boolean 				isRunning;
+	private boolean 				gameEnded;
+	private Level 					level;
+	private Player 					player;
 	
 	public GameModel() {
 		this.level = new Level();
-	}
-	public GameModel(LevelName name) {
-		// TODO
-		
+		this.gameEnded = false;
 	}
 	
-	public void sendAction(GameAction action) {
-		// TODO
+	public void startGame() {
+		this.isRunning = true;
+		this.gameEnded = false;
 	}
 	
-	public void update() {
-		// TODO
+	public void performAction(GameAction action) {
+		// TODO Complete action performing sequences
+		switch (action) {
+		case TURN_LEFT:
+			break;
+		case TURN_RIGHT:
+			break;
+		case ACCELERATE:
+			break;
+		case HANDBRAKE:
+			break;
+		case SHOOT:
+			break;
+		case START_GAME:
+			break;
+		case RESTART_GAME:
+			break;
+		case PAUSE_GAME:
+			break;
+		case NO_ACTION:
+			break;
+		}
+	}
+	
+	public void stopAction(GameAction action) {
+		// TODO Complete action performing sequences
+		switch (action) {
+		case TURN_LEFT:
+			break;
+		case TURN_RIGHT:
+			break;
+		case ACCELERATE:
+			break;
+		case HANDBRAKE:
+			break;
+		case SHOOT:
+			break;
+		default:
+			break;
+		}
+	}
+	
+	public void endGame() {
+		if (level != null && isRunning) {
+			this.isRunning = false;
+//			this.world = null;
+			this.gameEnded = true;
+		}
+	}
+	
+	public void update(int elapsedTime) {
+		if (level != null && isRunning) {
+			level.update(elapsedTime);
+		}
+		if (level.isGameOver()) {
+			if (level.hasCompletedRace()) {
+			    this.endGame();
+			}
+		}
 	}
 //	public void movePlayerVehicle(Player player, Direction direction) {
 //		player.moveVehicle(direction);
@@ -48,8 +104,12 @@ public class GameModel implements Runnable {
 //		player.setHandBrakeOn();
 //	}
 
-	public void run() {
-		// TODO Auto-generated method stub
-		
+	public Player getPlayer() {
+		return player;
 	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
+
 }

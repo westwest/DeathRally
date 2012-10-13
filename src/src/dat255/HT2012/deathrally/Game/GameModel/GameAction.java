@@ -21,7 +21,13 @@ package dat255.HT2012.deathrally.Game.GameModel;
 
 
 public enum GameAction {
-	TURN,
+	TURN_LEFT,
+	TURN_RIGHT,
 	ACCELERATE,
+	HANDBRAKE,
 	SHOOT,
+	START_GAME,
+	RESTART_GAME,
+	PAUSE_GAME,
+	NO_ACTION,
 }
