@@ -29,6 +29,8 @@ public class Vehicle extends MovableEntity {
 	
 	public Vehicle() {};
 	
+	public Vehicle(Vehicle vehicle) {};
+	
 	public void move(Direction direction) {};
 	
 	public void accelerate(float intensity){

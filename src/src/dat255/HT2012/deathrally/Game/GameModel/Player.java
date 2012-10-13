@@ -34,7 +34,8 @@ public class Player {
 	
 	public Vehicle getVehicle() {
 		// TODO
-		return null;
+		return new Vehicle(vehicle);
 	}
 	
+	//TODO hashCode() and equals()
 }
