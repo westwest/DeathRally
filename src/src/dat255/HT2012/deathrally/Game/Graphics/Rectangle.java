@@ -15,6 +15,7 @@ public class Rectangle extends Mesh{
 				px+width/2,py-height/2,0.0f, 
 				px+width/2,py+height/2,0.0f
 		};
+
 		setVertices(verticeList);
 		setIndices(indices);
 		setDrawMethod(GL10.GL_TRIANGLES);
