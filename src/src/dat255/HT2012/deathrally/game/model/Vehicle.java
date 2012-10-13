@@ -22,9 +22,6 @@ package dat255.HT2012.deathrally.game.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import dat255.HT2012.deathrally.game.Hitbox;
-import dat255.HT2012.deathrally.game.Position;
-import dat255.HT2012.deathrally.game.Vector2D;
 
 
 

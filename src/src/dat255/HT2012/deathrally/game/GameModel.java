@@ -17,7 +17,11 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package dat255.HT2012.deathrally.game.model;
+package dat255.HT2012.deathrally.game;
+
+import dat255.HT2012.deathrally.game.model.GameAction;
+import dat255.HT2012.deathrally.game.model.Level;
+import dat255.HT2012.deathrally.game.model.Player;
 
 
 public class GameModel {

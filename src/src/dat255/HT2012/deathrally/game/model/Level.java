@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 public class Level {
 	
 	private List<Entity> entities = new ArrayList<Entity>();
@@ -14,6 +15,7 @@ public class Level {
 	
 	public Level() {
 		this(new ArrayList<Entity>()); // Defaults to an empty world
+		defaultLevel();
 	}
 
 	public Level(Level copy) {
@@ -83,5 +85,10 @@ public class Level {
 		
 //		stepPositionX(e, vector.getX(), collidedEntities);
 //		stepPositionY(e, vector.getY(), collidedEntities);
+	}
+	
+	private void defaultLevel() {
+		entities.removeAll(entities);
+		entities.add(new Vehicle(new Position(0,0), this, new Player("player")));
 	}
 }

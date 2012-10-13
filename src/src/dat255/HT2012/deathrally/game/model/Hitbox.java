@@ -1,4 +1,4 @@
-package dat255.HT2012.deathrally.game;
+package dat255.HT2012.deathrally.game.model;
 
 import java.awt.Dimension;
 
