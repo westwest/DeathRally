@@ -19,6 +19,7 @@
 
 package dat255.HT2012.deathrally.Game.GameModel;
 
+// Does not fit together with the MovableEntity, nor with the Entity class any more
 public class Vehicle extends MovableEntity {
 	private float velocity = 0;
 	private float maxVelocity = 10;
