@@ -76,8 +76,10 @@ public class Level {
 	
 	private void checkCollision(Entity e,
 			Map<Entity, List<Entity>> collidedEntities) {
-		Position entityPosition = e.getPosition();
-		Hitbox entityHitbox = e.getHitbox();
+		float eMinX = e.getPosition().getX();
+		float eMaxX = e.getPosition().getX() + e.getHitbox().getWidth();
+		float eMinY = e.getPosition().getY();
+		float eMaxY = e.getPosition().getY() + e.getHitbox().getHeight();
 		
 		// TODO Complete the collision-check
 				
