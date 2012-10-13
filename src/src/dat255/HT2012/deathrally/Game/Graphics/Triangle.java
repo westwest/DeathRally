@@ -32,29 +32,17 @@ import javax.microedition.khronos.opengles.GL10;
  */
 public class Triangle extends Mesh {
 	private static final String TAG = Triangle.class.getSimpleName();
-	//Matrix-stuff and related
-	private float vertices[] = new float[9];
-	private short indices[] = {
-			0,1,2
-	};
+	private short indices[] = {0,1,2};
 	
 	public Triangle(float width, float height, float px, float py){
-		setDrawMethod(GL10.GL_TRIANGLES);
-		
-		//Not found a better way of doing it yet...
-		//Vertex 1 [bottom left]
-		vertices[0] = -width/2;
-		vertices[1] = -height/2;
-		vertices[2] = 0.0f;
-		//Vertex 2 [top center]
-		vertices[3] = 0.0f;
-		vertices[4] = height/2;
-		vertices[5] = 0.0f;
-		//Vertex 3 [bottom right]
-		vertices[6] = width/2;
-		vertices[7] = -height/2;
-		vertices[8] = 0.0f;
+		super(px,py);
+		float[] vertices = {
+				-width/2, -height/2, 0.0f,
+				0.0f, height/2, 0.0f,
+				width/2, -height/2, 0.0f 
+		};
 		setVertices(vertices);
 		setIndices(indices);
+		setDrawMethod(GL10.GL_TRIANGLES);
 	}
 }

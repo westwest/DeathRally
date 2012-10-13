@@ -25,6 +25,7 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 import javax.microedition.khronos.opengles.GL11;
 
+import android.content.Context;
 import android.opengl.GLSurfaceView.Renderer;
 import android.opengl.GLU;
 
@@ -39,6 +40,7 @@ import android.opengl.GLU;
 
 public class GameRenderer implements Renderer {
 	private static volatile GameRenderer instance;
+	private static Context context;
 	private static ArrayList<VisualEntity> drawObjs = new ArrayList<VisualEntity>();
 	
 	private static float[] modelViewMatrix = new float[16];
@@ -51,7 +53,7 @@ public class GameRenderer implements Renderer {
 	/**
 	 * Can only have one renderer of this type!
 	 */
-	public static GameRenderer getInstance(){
+	public static GameRenderer getInstance(Context c){
 		if(instance == null){
 			synchronized( GameRenderer .class){
 				if(instance == null){
@@ -59,6 +61,7 @@ public class GameRenderer implements Renderer {
 				}
 			}
 		}	
+		context = c;
 		return instance;
 	}
 	
@@ -104,6 +107,9 @@ public class GameRenderer implements Renderer {
 	}
 
 	public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+		for(VisualEntity drawObj : drawObjs){
+			//drawObj.loadGLTexture(gl, context);
+		}
 		gl.glClearColor(0.0f, 0.0f, 0.0f, 0.5f);
 		gl.glShadeModel(GL10.GL_SMOOTH);
 		gl.glClearDepthf(1.0f);

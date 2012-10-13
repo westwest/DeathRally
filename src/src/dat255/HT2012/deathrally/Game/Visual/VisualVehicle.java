@@ -22,6 +22,7 @@ package dat255.HT2012.deathrally.Game.Visual;
 import javax.microedition.khronos.opengles.GL10;
 import dat255.HT2012.deathrally.Game.Graphics.Mesh;
 import dat255.HT2012.deathrally.Game.Graphics.Rectangle;
+import dat255.HT2012.deathrally.Game.Graphics.Triangle;
 
 /**
  * Represent the view of vehicles. Basically provides an interface between
@@ -38,24 +39,25 @@ public class VisualVehicle extends VisualEntity {
 	public VisualVehicle(float px, float py){
 		this.px = px;
 		this.py = py;
-		this.representation = new Rectangle(px,py,0.2f,0.4f);
+		//this.representation = new Rectangle(px,py,0.2f,0.4f);
+		this.representation = new Triangle(0.2f,0.4f,px,py);
 		float[] vertices = representation.getVertices();
-		float[] textureMatrix = {
+		/*float[] textureMatrix = {
 				vertices[3], vertices[4],  //v2
 				vertices[0], vertices[1],  //v1
 				vertices[9], vertices[10], //v4
 				vertices[6],vertices[7]    //v3	
-		};
-		setTextureMatrix(textureMatrix);
+		};*/
+		//setTextureMatrix(textureMatrix);
 	}
 	
 	@Override
 	public void display(GL10 gl) {
-		representation.refresh(px,py,direction);
-		gl.glBindTexture(GL10.GL_TEXTURE_2D, getTexturePointer()[0]);
+		//representation.refresh(px,py,direction);
+		/*gl.glBindTexture(GL10.GL_TEXTURE_2D, getTexturePointer()[0]);
 		gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
-		gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, getTextureBuffer());
+		gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, getTextureBuffer());*/
 		representation.draw(gl);
-		gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
+		//gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
 	}
 }

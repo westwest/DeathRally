@@ -47,7 +47,7 @@ public class MainGamePanel extends GLSurfaceView  {
 		
 		//Dont target OpenGL 2.0 just yet
 		//setEGLContextClientVersion(2);
-		gameRenderer = GameRenderer.getInstance();		
+		gameRenderer = GameRenderer.getInstance(context);		
 		setRenderer(gameRenderer);
 		
 		getHolder().addCallback(this);		
@@ -56,7 +56,7 @@ public class MainGamePanel extends GLSurfaceView  {
 		
 		//create Entities
 		ArrayList<VisualEntity> visualEntities = new ArrayList<VisualEntity>();
-		VisualVehicle vCar = new VisualVehicle(0.0f, 00f);
+		VisualVehicle vCar = new VisualVehicle(0.0f, 0.0f);
 		visualEntities.add(vCar);
 		gameRenderer.addDrawObj(visualEntities);
 		

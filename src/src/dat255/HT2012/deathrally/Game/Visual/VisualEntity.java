@@ -30,6 +30,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.opengl.GLUtils;
+import android.util.Log;
 
 /**
  * Represents any visual object. May hold texture. Determines rendering 
@@ -38,6 +39,7 @@ import android.opengl.GLUtils;
  *
  */
 public abstract class VisualEntity {
+	private static final String TAG = "VisualEntity";
 	private int texturePointer[] = new int[1];
 	private FloatBuffer textureBuffer;
 	private float texture[];
@@ -53,7 +55,7 @@ public abstract class VisualEntity {
 	public abstract void display(GL10 gl);	
 	
 	/**
-	 * Standard texture-loader, to be used by subclasses if they use it.
+	 * Standard texture-loader, to be used by subclasses whenever needed.
 	 * @param gl
 	 * @param context
 	 */
