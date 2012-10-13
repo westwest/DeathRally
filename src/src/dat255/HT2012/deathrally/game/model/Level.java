@@ -76,7 +76,55 @@ public class Level {
 	
 	private void checkCollision(Entity e,
 			Map<Entity, List<Entity>> collidedEntities) {
-		// TODO Need to check collision between entity and all other entities
+		Position entityPosition = e.getPosition();
+		Hitbox entityHitbox = e.getHitbox();
+		
+		// TODO Complete the collision-check
+				
+	}
+	
+	/**
+	 * Returns a list of all entities that are contained in an area
+	 * 
+	 * @param x, X-coordinate of upper-left corner of area
+	 * @param y, Y-coordinate of upper-left corner of area
+	 * @param width, Width of the area
+	 * @param height, Height of the area
+	 * @return
+	 */
+	public List<Entity> getEntitiesAt(float x, float y, int width, int height) {
+		List<Entity> list = new ArrayList<Entity>();
+		float minX = x;
+		float maxX = x+width;
+		float minY = y;
+		float maxY = y+height;
+
+		for (Entity e : this.getEntities()) {
+			float entityMinX = e.getPosition().getX();
+			float entityMaxX = e.getPosition().getX() + e.getHitbox().getWidth();
+			float entityMinY = e.getPosition().getY();
+			float entityMaxY = e.getPosition().getY() + e.getHitbox().getHeight();
+			
+			boolean isOverlap = ((maxX >= entityMinX) &&
+	                (maxY >= entityMinY) &&
+	                (minX <= entityMaxX) &&
+	                (minY <= entityMaxY));
+			
+			boolean outerContainsInner = ((maxX >= entityMaxX) &&
+					(maxY >= entityMaxY) &&
+					(minX <= entityMinX) &&
+					(minY <= entityMinY));
+			
+			boolean innerContainsOuter = ((entityMaxX >= maxX) && 
+					(entityMaxY >= maxY) && 
+					(entityMinY <= minY) && 
+					(entityMinX <= minX));
+			
+			if (isOverlap || outerContainsInner || innerContainsOuter) {
+				list.add(e);
+			}
+		}
+		return list;
 	}
 	
 	private void move(Entity e, Map<Entity, List<Entity>> collidedEntities) {
