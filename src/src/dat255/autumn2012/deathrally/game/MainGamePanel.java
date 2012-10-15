@@ -17,15 +17,16 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package dat255.HT2012.deathrally.Game;
+package dat255.autumn2012.deathrally.game;
 
 import java.util.ArrayList;
-import dat255.HT2012.deathrally.Game.GameModel.GameAction;
-import dat255.HT2012.deathrally.Game.GameModel.Player;
-import dat255.HT2012.deathrally.Game.Visual.GameRenderer;
-import dat255.HT2012.deathrally.Game.Visual.VisualEntity;
-import dat255.HT2012.deathrally.Game.Visual.VisualVehicle;
-import dat255.HT2012.deathrally.Game.Visual.Controls.Joystick;
+
+import dat255.autumn2012.deathrally.game.controls.Joystick;
+import dat255.autumn2012.deathrally.game.gamemodel.GameAction;
+import dat255.autumn2012.deathrally.game.gamemodel.Player;
+import dat255.autumn2012.deathrally.game.view.GameRenderer;
+import dat255.autumn2012.deathrally.game.view.VisualEntity;
+import dat255.autumn2012.deathrally.game.view.VisualVehicle;
 import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.view.MotionEvent;

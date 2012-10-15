@@ -17,39 +17,32 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+package dat255.autumn2012.deathrally.game.graphics;
 
-package dat255.HT2012.deathrally.Game.GameModel;
+import javax.microedition.khronos.opengles.GL10;
 
-/**
- * Class is responsible for managing players. Key is keeping track of who's active. There
- * have to be only one instance in the system, so singleton is used. 
- * 
- * @author Johannes Vestlund
- *
- */
-public class Players {
-	private static volatile Players instance = null;
-	private Player activePlayer;
+
+public class Circle extends Mesh {
+		private int nrPoints = 30;
+		private float[] vertices = new float[nrPoints *3];
+		private short[] indices = new short[nrPoints];
+		
 	
-	private Players(){
-	}
-	
-	public static Players getInstance(){
-		if(instance == null){
-			synchronized( Players .class){
-				if(instance == null){
-					instance = new Players();
-				}
-			}
-		}	
-		return instance;
-	}
-	
-	public Player getActivePlayer(){
-		return activePlayer;
-	}
-	
-	public void setActivePlayer(Player p){
-		activePlayer = p;
+	public Circle(float px, float py, float radius){
+		super(px,py);
+		
+		double relAngle = Math.pow(nrPoints, -1)*2*Math.PI;
+		for(int i = 0; i< nrPoints; i++){
+			//x, y and z coords for each point;
+			vertices[i*3] = (float) (Math.cos(relAngle*i)*radius);
+			vertices[i*3+1] = (float) (Math.sin(relAngle*i)*radius);
+			vertices[i*3+2] = 0.0f;
+			
+			indices[i] = (short) i;
+		}
+		
+		setVertices(vertices);
+		setIndices(indices);
+		setDrawMethod(GL10.GL_LINE_LOOP);
 	}
 }

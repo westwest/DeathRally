@@ -17,9 +17,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package dat255.HT2012.deathrally;
+package dat255.autumn2012.deathrally;
 
-import dat255.HT2012.deathrally.Game.DeathRallyGame;
+import dat255.HT2012.deathrally.R;
+import dat255.autumn2012.deathrally.game.DeathRallyGame;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;

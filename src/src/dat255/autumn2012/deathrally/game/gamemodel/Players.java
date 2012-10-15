@@ -17,29 +17,39 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package dat255.HT2012.deathrally.Game.Visual;
 
-import javax.microedition.khronos.opengles.GL10;
+package dat255.autumn2012.deathrally.game.gamemodel;
 
-import dat255.HT2012.deathrally.Game.Graphics.Circle;
-
-public class JoystickView extends VisualEntity{
-	Circle boundary;
+/**
+ * Class is responsible for managing players. Key is keeping track of who's active. There
+ * have to be only one instance in the system, so singleton is used. 
+ * 
+ * @author Johannes Vestlund
+ *
+ */
+public class Players {
+	private static volatile Players instance = null;
+	private Player activePlayer;
 	
-	public JoystickView(float px, float py, float radius){
-		boundary = new Circle(px,py,radius);
-	}
-
-	@Override
-	public void display(GL10 gl) {
-		boundary.draw(gl);	
-	}
-	
-	public void destroy(){
-		GameRenderer.disconnect(this);
+	private Players(){
 	}
 	
-	public String toString(){
-		return "JoystickView";
+	public static Players getInstance(){
+		if(instance == null){
+			synchronized( Players .class){
+				if(instance == null){
+					instance = new Players();
+				}
+			}
+		}	
+		return instance;
+	}
+	
+	public Player getActivePlayer(){
+		return activePlayer;
+	}
+	
+	public void setActivePlayer(Player p){
+		activePlayer = p;
 	}
 }

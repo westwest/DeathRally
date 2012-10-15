@@ -17,15 +17,15 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package dat255.HT2012.deathrally.Game;
+package dat255.autumn2012.deathrally.game;
 
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
-import dat255.HT2012.deathrally.Game.GameModel.*;
-import dat255.HT2012.deathrally.Game.Visual.*;
+import dat255.autumn2012.deathrally.game.gamemodel.*;
+import dat255.autumn2012.deathrally.game.view.*;
 
 public class DeathRallyGame extends Activity {
 	MainGamePanel view;

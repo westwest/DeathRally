@@ -13,7 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.*/
 
-package dat255.HT2012.deathrally.Game.Visual;
+package dat255.autumn2012.deathrally.game.view;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

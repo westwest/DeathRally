@@ -17,35 +17,11 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package dat255.HT2012.deathrally.Game.GameModel;
+package dat255.autumn2012.deathrally.game.gamemodel;
 
-import dat255.HT2012.deathrally.Game.Constants.LevelName;
 
-public class GameModel implements Runnable {
-	private Player player;
-	
-	
-	public GameModel(LevelName name) {
-		// TODO
-	}
-	
-	public void sendAction(GameAction action) {
-		// TODO
-	}
-	
-	public void update() {
-		// TODO
-	}
-//	public void movePlayerVehicle(Player player, Direction direction) {
-//		player.moveVehicle(direction);
-//	}
-//	
-//	public void handBrakePlayerVehicle(Player player) {
-//		player.setHandBrakeOn();
-//	}
-
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
+public enum GameAction {
+	TURN,
+	ACCELERATE,
+	SHOOT,
 }

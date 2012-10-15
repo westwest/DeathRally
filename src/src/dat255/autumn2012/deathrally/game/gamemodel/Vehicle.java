@@ -17,7 +17,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package dat255.HT2012.deathrally.Game.GameModel;
+package dat255.autumn2012.deathrally.game.gamemodel;
 
 public class Vehicle extends MovableEntity {
 	private float velocity = 0;

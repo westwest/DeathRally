@@ -17,32 +17,32 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package dat255.HT2012.deathrally.Game.Graphics;
+package dat255.autumn2012.deathrally.game.graphics;
 
 import javax.microedition.khronos.opengles.GL10;
 
 
-public class Circle extends Mesh {
-		private int nrPoints = 30;
-		private float[] vertices = new float[nrPoints *3];
-		private short[] indices = new short[nrPoints];
-		
+/**
+ * Developed from square-class in public domain. There are similarities, but code has been significantly
+ * modified and the class has been adapted to support motion.
+ * Source: http://www.jayway.com/2009/12/04/opengl-es-tutorial-for-android-part-ii-building-a-polygon/
+ * 
+ * @author Johannes Vestlund
+ *
+ */
+public class Triangle extends Mesh {
+	private static final String TAG = Triangle.class.getSimpleName();
+	private short indices[] = {0,1,2};
 	
-	public Circle(float px, float py, float radius){
+	public Triangle(float width, float height, float px, float py){
 		super(px,py);
-		
-		double relAngle = Math.pow(nrPoints, -1)*2*Math.PI;
-		for(int i = 0; i< nrPoints; i++){
-			//x, y and z coords for each point;
-			vertices[i*3] = (float) (Math.cos(relAngle*i)*radius);
-			vertices[i*3+1] = (float) (Math.sin(relAngle*i)*radius);
-			vertices[i*3+2] = 0.0f;
-			
-			indices[i] = (short) i;
-		}
-		
+		float[] vertices = {
+				-width/2, -height/2, 0.0f,
+				0.0f, height/2, 0.0f,
+				width/2, -height/2, 0.0f 
+		};
 		setVertices(vertices);
 		setIndices(indices);
-		setDrawMethod(GL10.GL_LINE_LOOP);
+		setDrawMethod(GL10.GL_TRIANGLES);
 	}
 }

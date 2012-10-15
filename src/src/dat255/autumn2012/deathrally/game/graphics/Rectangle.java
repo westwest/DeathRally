@@ -1,4 +1,4 @@
-package dat255.HT2012.deathrally.Game.Graphics;
+package dat255.autumn2012.deathrally.game.graphics;
 
 import javax.microedition.khronos.opengles.GL10;
 

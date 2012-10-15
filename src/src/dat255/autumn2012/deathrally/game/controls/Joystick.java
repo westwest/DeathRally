@@ -17,15 +17,15 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package dat255.HT2012.deathrally.Game.Visual.Controls;
+package dat255.autumn2012.deathrally.game.controls;
 
 
 import android.opengl.GLU;
-import dat255.HT2012.deathrally.Game.MainGamePanel;
-import dat255.HT2012.deathrally.Game.GameModel.GameAction;
-import dat255.HT2012.deathrally.Game.GameModel.Player;
-import dat255.HT2012.deathrally.Game.Visual.GameRenderer;
-import dat255.HT2012.deathrally.Game.Visual.JoystickView;
+import dat255.autumn2012.deathrally.game.MainGamePanel;
+import dat255.autumn2012.deathrally.game.gamemodel.GameAction;
+import dat255.autumn2012.deathrally.game.gamemodel.Player;
+import dat255.autumn2012.deathrally.game.view.GameRenderer;
+import dat255.autumn2012.deathrally.game.view.JoystickView;
 
 public class Joystick {
 	private MainGamePanel controller;

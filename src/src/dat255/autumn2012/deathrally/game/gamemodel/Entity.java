@@ -1,4 +1,4 @@
-package dat255.HT2012.deathrally.Game.GameModel;
+package dat255.autumn2012.deathrally.game.gamemodel;
 
 import java.util.Observable;
 
