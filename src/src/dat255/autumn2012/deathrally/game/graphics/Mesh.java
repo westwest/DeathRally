@@ -44,14 +44,15 @@ public class Mesh {
 	private float z=0;
 	private float rz = 0;
 	
-	public Mesh(float x, float y){
+	public Mesh(float x, float y, int drawMethod){
 		this.x = x;
 		this.y = y;
+		this.drawMethod = drawMethod;
 	}
 	
 	/**
 	 * Basic draw method. Does common settings and gives room for rotation and translation. The
-	 * method can be chosen, and should be set on init through constructor.
+	 * method needs to be set before rendering shape.
 	 * @param gl represent graphical context and is supplied by renderer.
 	 */
 	public void draw(GL10 gl){
@@ -92,13 +93,10 @@ public class Mesh {
 	public float[] getVertices(){
 		int bufferLength = vertexBuffer.capacity();
 		float[] vertices = new float[bufferLength];
-		for(int i = 0; i<bufferLength; i++)
+		for(int i = 0; i<bufferLength; i++){
 			vertices[i] = vertexBuffer.get(i);
+		}
 		return vertices;
-	}
-	
-	protected void setDrawMethod(int drawMethod){
-		this.drawMethod = drawMethod;
 	}
 	
 	public void refresh(float px, float py, Float direction) {

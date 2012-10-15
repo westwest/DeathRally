@@ -29,7 +29,7 @@ public class Circle extends Mesh {
 		
 	
 	public Circle(float px, float py, float radius){
-		super(px,py);
+		super(px,py, GL10.GL_LINE_LOOP);
 		
 		double relAngle = Math.pow(nrPoints, -1)*2*Math.PI;
 		for(int i = 0; i< nrPoints; i++){
@@ -43,6 +43,5 @@ public class Circle extends Mesh {
 		
 		setVertices(vertices);
 		setIndices(indices);
-		setDrawMethod(GL10.GL_LINE_LOOP);
 	}
 }

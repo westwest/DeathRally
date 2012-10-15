@@ -35,7 +35,7 @@ public class Triangle extends Mesh {
 	private short indices[] = {0,1,2};
 	
 	public Triangle(float width, float height, float px, float py){
-		super(px,py);
+		super(px,py, GL10.GL_TRIANGLES);
 		float[] vertices = {
 				-width/2, -height/2, 0.0f,
 				0.0f, height/2, 0.0f,
@@ -43,6 +43,5 @@ public class Triangle extends Mesh {
 		};
 		setVertices(vertices);
 		setIndices(indices);
-		setDrawMethod(GL10.GL_TRIANGLES);
 	}
 }
