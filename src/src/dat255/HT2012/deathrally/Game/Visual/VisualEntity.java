@@ -61,6 +61,7 @@ public abstract class VisualEntity {
 	 */
 	public void loadGLTexture(GL10 gl, Context context){
 		if(hasTexture){
+			//Should be replaced with more generic code. R.drawable.test_car I mean
 			Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.test_car);
 			//Generate texture pointer and bind
 			gl.glGenTextures(1, texturePointer,0);
