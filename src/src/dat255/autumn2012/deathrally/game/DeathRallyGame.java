@@ -39,25 +39,6 @@ public class DeathRallyGame extends Activity {
 		
 		Log.d(TAG, "game activity created");
 		view = new MainGamePanel(this);
-		//gameLoop = new GameLoop(view.getHolder(), view);
-		
-		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		
-		/* Checking OpenGL support */
-		/*
-		final ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-		final ConfigurationInfo configurationInfo = activityManager.getDeviceConfigurationInfo();
-		final boolean supportsEs2 = configurationInfo.reqGlEsVersion >= 0x20000;
-		
-		//OpenGL ES 2.0 works on some devices, but seems a bit unstable on emulator. 
-		// For now ES 1.1 will be main attempt.
-		if(supportsEs2){
-			//glSurface.setEGLContextClientVersion(2);
-			System.out.println("ES2 supported");
-		}else{
-			System.out.println("ES2 not supported");
-		}
-		*/
 		setContentView(view);
 	}
 	
