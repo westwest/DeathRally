@@ -39,9 +39,17 @@ public abstract class VisualEntity {
 	private static final String TAG = "VisualEntity";
 	private boolean hasTexture = false;
 	protected Mesh representation;
+	private int image;
+	protected int[] texturePointer;
 
 	public VisualEntity(Mesh representation){
 		this.representation = representation;
+	}
+	
+	public VisualEntity(Mesh representation, int image, int[] texturePointer){
+		this.representation = representation;
+		this.image = image;
+		this.texturePointer = texturePointer;
 	}
 	
 	/**
@@ -60,16 +68,19 @@ public abstract class VisualEntity {
 	 */
 	public void loadGLTexture(GL10 gl, Context context){
 		if(hasTexture){
-			//Should be replaced with more generic code. R.drawable.test_car I mean
-			Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.test_car);
+			Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), image);
 			//Generate texture pointer and bind
-			gl.glGenTextures(1, representation.getTexturePointer(),0);
-			gl.glBindTexture(GL10.GL_TEXTURE_2D, representation.getTexturePointer()[0]);
+			gl.glGenTextures(1, texturePointer,0);
+			gl.glBindTexture(GL10.GL_TEXTURE_2D, texturePointer[0]);
 			
 			gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MIN_FILTER, GL10.GL_NEAREST);
 			gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MAG_FILTER, GL10.GL_LINEAR);
 			
 			GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bitmap, 0);
 		}
+	}
+	
+	public void setHasTexture(){
+		hasTexture = true;
 	}
 }
