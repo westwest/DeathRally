@@ -21,7 +21,6 @@ package dat255.autumn2012.deathrally.game.view;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import dat255.autumn2012.deathrally.R;
 import dat255.autumn2012.deathrally.game.graphics.Mesh;
 import android.content.Context;
 import android.graphics.Bitmap;

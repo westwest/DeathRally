@@ -26,9 +26,7 @@ import java.nio.FloatBuffer;
 import javax.microedition.khronos.opengles.GL10;
 
 import dat255.autumn2012.deathrally.R;
-import dat255.autumn2012.deathrally.game.graphics.Mesh;
 import dat255.autumn2012.deathrally.game.graphics.Rectangle;
-import dat255.autumn2012.deathrally.game.graphics.Triangle;
 
 /**
  * Represent the view of vehicles. Basically provides an interface between
