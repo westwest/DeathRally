@@ -25,7 +25,7 @@ import java.nio.FloatBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import dat255.HT2012.deathrally.R;
+import dat255.autumn2012.deathrally.R;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

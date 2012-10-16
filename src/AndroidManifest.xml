@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="dat255.HT2012.deathrally"
+    package="dat255.autumn2012.deathrally"
     android:versionCode="1"
     android:versionName="0.1" >
 
@@ -21,7 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Game.DeathRallyGame"></activity>
+        <activity android:name=".game.DeathRallyGame"></activity>
     </application>
 
 </manifest>
