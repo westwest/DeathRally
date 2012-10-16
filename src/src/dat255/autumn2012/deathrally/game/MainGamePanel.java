@@ -29,6 +29,7 @@ import dat255.autumn2012.deathrally.game.view.VisualEntity;
 import dat255.autumn2012.deathrally.game.view.VisualVehicle;
 import android.content.Context;
 import android.opengl.GLSurfaceView;
+import android.util.Log;
 import android.view.MotionEvent;
 
 //Basic design taken from "http://obviam.net/index.php/a-very-basic-the-game-loop-for-android/"

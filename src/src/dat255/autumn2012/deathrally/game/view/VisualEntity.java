@@ -19,13 +19,10 @@
 
 package dat255.autumn2012.deathrally.game.view;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
-
 import javax.microedition.khronos.opengles.GL10;
 
-import dat255.HT2012.deathrally.R;
+import dat255.autumn2012.deathrally.R;
+import dat255.autumn2012.deathrally.game.graphics.Mesh;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -40,11 +37,13 @@ import android.util.Log;
  */
 public abstract class VisualEntity {
 	private static final String TAG = "VisualEntity";
-	private int texturePointer[] = new int[1];
-	private FloatBuffer textureBuffer;
-	private float texture[];
 	private boolean hasTexture = false;
+	protected Mesh representation;
 
+	public VisualEntity(Mesh representation){
+		this.representation = representation;
+	}
+	
 	/**
 	 * Method display is a higher level draw command, motivated by the
 	 * need to make gluing of textures optional. It should at least call
@@ -64,8 +63,8 @@ public abstract class VisualEntity {
 			//Should be replaced with more generic code. R.drawable.test_car I mean
 			Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.test_car);
 			//Generate texture pointer and bind
-			gl.glGenTextures(1, texturePointer,0);
-			gl.glBindTexture(GL10.GL_TEXTURE_2D, texturePointer[0]);
+			gl.glGenTextures(1, representation.getTexturePointer(),0);
+			gl.glBindTexture(GL10.GL_TEXTURE_2D, representation.getTexturePointer()[0]);
 			
 			gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MIN_FILTER, GL10.GL_NEAREST);
 			gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MAG_FILTER, GL10.GL_LINEAR);
@@ -73,23 +72,4 @@ public abstract class VisualEntity {
 			GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bitmap, 0);
 		}
 	}
-	
-	public void setTextureMatrix(float[] texture){
-		this.texture = texture;
-		ByteBuffer byteBuffer = ByteBuffer.allocateDirect(texture.length * 4);
-		byteBuffer.order(ByteOrder.nativeOrder());
-		textureBuffer = byteBuffer.asFloatBuffer();
-		textureBuffer.put(texture);
-		textureBuffer.position(0);
-		hasTexture = true;
-	}
-	
-	protected int[] getTexturePointer(){
-		return texturePointer;
-	}
-	
-	protected FloatBuffer getTextureBuffer(){
-		return textureBuffer;
-	}
-	
 }

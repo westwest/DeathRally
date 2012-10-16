@@ -34,32 +34,39 @@ import dat255.autumn2012.deathrally.game.graphics.Triangle;
 public class VisualVehicle extends VisualEntity {	
 	private float px;
 	private float py;
-	private float direction = 180.0f;
-	private Mesh representation;
+	private float direction = 0.0f;
 	
 	public VisualVehicle(float px, float py){
+		super(new Rectangle(px,py,0.2f,0.4f));
+		
 		this.px = px;
 		this.py = py;
 		this.representation = new Rectangle(px,py,0.2f,0.4f);
-		float[] vertices = representation.getVertices();
 		float[] textureMatrix = {
 				1.0f, 0.0f,  //3
 				1.0f, 1.0f,  //2
 				0.0f, 1.0f,  //0
 				0.0f, 0.0f   //1
 		};
-		setTextureMatrix(textureMatrix);
+		representation.setTextureMatrix(textureMatrix);
+	}
+	
+	public void update(float px, float py, float direction){
+		this.px = px;
+		this.py = py;
+		this.direction = direction;
 	}
 	
 	@Override
 	public void display(GL10 gl) {
-		//representation.refresh(px,py,direction);
+		representation.refresh(px,py,direction);
 		gl.glEnable(GL10.GL_TEXTURE_2D);
-		gl.glBindTexture(GL10.GL_TEXTURE_2D, getTexturePointer()[0]);
+		gl.glBindTexture(GL10.GL_TEXTURE_2D, representation.getTexturePointer()[0]);
 		gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
-		gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, getTextureBuffer());
+		gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, representation.getTextureBuffer());
 		representation.draw(gl);
 		gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
 		gl.glDisable(GL10.GL_TEXTURE_2D);
 	}
+
 }
