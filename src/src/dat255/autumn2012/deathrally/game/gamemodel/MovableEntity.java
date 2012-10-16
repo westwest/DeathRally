@@ -3,7 +3,12 @@ public abstract class MovableEntity extends Entity {
 	private float pos_x;
 	private float pos_y;
 	
-	public void move(float pos_x, float pos_y){
+	public MovableEntity(float pos_x, float pos_y){
+		this.pos_x = pos_x;
+		this.pos_y = pos_y;
+	}
+	
+	public void update(){
 		float velocity = getVelocity();
 		float angle = getAngle();
 		
@@ -17,10 +22,10 @@ public abstract class MovableEntity extends Entity {
 	public abstract float getVelocity();
 	public abstract float getAngle();
 	
-	public float getX(){
+	protected float getX(){
 		return pos_x;
 	}
-	public float getY(){
+	protected float getY(){
 		return pos_y;
 	}
 }

@@ -19,34 +19,41 @@
 
 package dat255.autumn2012.deathrally.game.gamemodel;
 
+import java.util.LinkedList;
+
 public class Vehicle extends MovableEntity {
 	private float velocity = 0;
 	private float maxVelocity = 10;
 	private float acceleration;
-	private float angle = 0;
-	private float turningCapability = 10;
+	private float angle= 0;
+	private LinkedList<Weapon> Weapons = new LinkedList<Weapon>();
 	
 	
-	public Vehicle() {};
+	public Vehicle(float posX, float posY) {
+		super(posX,posY);
+		
+	};
 	
-	public void move(Direction direction) {};
-	
+	/**
+	 * Method changes vehicles speed using a primitive formula v=v0+at, where
+	 * time is determined by fps and breaking is considered to be negative a.
+	 * @param intensity analogous to how hard one press down the throttle, 
+	 *                  or break.
+	 */
 	public void accelerate(float intensity){
 		//v = v0 + at, time?, a adjusted by intensity linear
 		//time is set by speed of thread, if connected to render => fps, else something else
-		//Algorithm does not give room for simulation of good/bad breaks. Retardation = -Acceleration
+		//Algorithm does not support simulation of good/bad breaks. Retardation = -Acceleration
 		velocity = velocity + intensity*acceleration; 
 		if(velocity > maxVelocity){
 			velocity = maxVelocity;
 		}
-		setChanged();
-		notifyObservers(GameAction.ACCELERATE);
 	};
 	
 	public void turn(float angle){
-		this.angle = angle;
-		setChanged();
-		notifyObservers(GameAction.TURN);
+		if(velocity != 0.0f){
+			this.angle = angle;
+		}
 	}
 	
 	public float getVelocity(){
@@ -55,10 +62,6 @@ public class Vehicle extends MovableEntity {
 	
 	public float getAngle(){
 		return angle;
-	}
-	
-	public float getTurningCapability(){
-		return turningCapability;
 	}
 	
 }
