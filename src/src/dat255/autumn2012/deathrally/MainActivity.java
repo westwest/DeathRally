@@ -19,7 +19,7 @@
 
 package dat255.autumn2012.deathrally;
 
-import dat255.HT2012.deathrally.R;
+import dat255.autumn2012.deathrally.R;
 import dat255.autumn2012.deathrally.game.DeathRallyGame;
 import android.os.Bundle;
 import android.app.Activity;
