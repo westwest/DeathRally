@@ -34,6 +34,9 @@ import javax.microedition.khronos.opengles.GL10;
  *
  */
 public class Mesh {
+	protected final int byteFactor = 4;
+	protected final int shortFactor = 2;
+	
 	private FloatBuffer vertexBuffer;
 	private ShortBuffer indexBuffer;
 	private int nrIndices;
@@ -43,6 +46,11 @@ public class Mesh {
 	private float x,y;
 	private float z=0;
 	private float rz = 0;
+	
+	//Texture
+	private int texturePointer[] = new int[1];
+	private FloatBuffer textureBuffer;
+	private float texture[];
 	
 	public Mesh(float x, float y, int drawMethod){
 		this.x = x;
@@ -74,7 +82,7 @@ public class Mesh {
 	}
 	
 	protected void setIndices(short[] indices){
-		ByteBuffer ibb = ByteBuffer.allocateDirect(indices.length * 2);
+		ByteBuffer ibb = ByteBuffer.allocateDirect(indices.length * shortFactor);
 		ibb.order(ByteOrder.nativeOrder());
 		indexBuffer = ibb.asShortBuffer();
 		indexBuffer.put(indices);
@@ -83,7 +91,7 @@ public class Mesh {
 	}
 	
 	protected void setVertices(float[] vertices){
-		ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length * 4);
+		ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length * byteFactor);
 		vbb.order(ByteOrder.nativeOrder());
 		vertexBuffer = vbb.asFloatBuffer();
 		vertexBuffer.put(vertices);
@@ -97,6 +105,23 @@ public class Mesh {
 			vertices[i] = vertexBuffer.get(i);
 		}
 		return vertices;
+	}
+	
+	public void setTextureMatrix(float[] texture){
+		this.texture = texture;
+		ByteBuffer byteBuffer = ByteBuffer.allocateDirect(texture.length * 4);
+		byteBuffer.order(ByteOrder.nativeOrder());
+		textureBuffer = byteBuffer.asFloatBuffer();
+		textureBuffer.put(texture);
+		textureBuffer.position(0);
+	}
+	
+	public int[] getTexturePointer(){
+		return texturePointer;
+	}
+	
+	public FloatBuffer getTextureBuffer(){
+		return textureBuffer;
 	}
 	
 	public void refresh(float px, float py, Float direction) {

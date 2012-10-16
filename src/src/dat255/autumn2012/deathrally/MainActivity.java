@@ -21,13 +21,16 @@ package dat255.autumn2012.deathrally;
 
 import dat255.autumn2012.deathrally.R;
 import dat255.autumn2012.deathrally.game.DeathRallyGame;
+import dat255.autumn2012.deathrally.game.MainGamePanel;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
 public class MainActivity extends Activity {
+	private static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,8 +45,8 @@ public class MainActivity extends Activity {
     }
     
     public void launchGame(View view){
-    	System.out.println("Launch Game!");
     	Intent intent = new Intent(this, DeathRallyGame.class);
+    	Log.d(TAG, "Launch Game");
     	startActivity(intent);
     }
 }

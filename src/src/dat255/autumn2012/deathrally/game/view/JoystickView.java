@@ -24,15 +24,14 @@ import javax.microedition.khronos.opengles.GL10;
 import dat255.autumn2012.deathrally.game.graphics.Circle;
 
 public class JoystickView extends VisualEntity{
-	Circle boundary;
 	
 	public JoystickView(float px, float py, float radius){
-		boundary = new Circle(px,py,radius);
+		super(new Circle(px,py,radius));
 	}
 
 	@Override
 	public void display(GL10 gl) {
-		boundary.draw(gl);	
+		representation.draw(gl);	
 	}
 	
 	public void destroy(){
