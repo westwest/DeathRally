@@ -47,11 +47,6 @@ public class Mesh {
 	private float z=0;
 	private float rz = 0;
 	
-	//Texture
-	private int texturePointer[] = new int[1];
-	private FloatBuffer textureBuffer;
-	private float texture[];
-	
 	public Mesh(float x, float y, int drawMethod){
 		this.x = x;
 		this.y = y;
@@ -105,23 +100,6 @@ public class Mesh {
 			vertices[i] = vertexBuffer.get(i);
 		}
 		return vertices;
-	}
-	
-	public void setTextureMatrix(float[] texture){
-		this.texture = texture;
-		ByteBuffer byteBuffer = ByteBuffer.allocateDirect(texture.length * 4);
-		byteBuffer.order(ByteOrder.nativeOrder());
-		textureBuffer = byteBuffer.asFloatBuffer();
-		textureBuffer.put(texture);
-		textureBuffer.position(0);
-	}
-	
-	public int[] getTexturePointer(){
-		return texturePointer;
-	}
-	
-	public FloatBuffer getTextureBuffer(){
-		return textureBuffer;
 	}
 	
 	public void refresh(float px, float py, Float direction) {

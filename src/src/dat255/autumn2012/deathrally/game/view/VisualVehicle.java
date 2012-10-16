@@ -19,8 +19,13 @@
 
 package dat255.autumn2012.deathrally.game.view;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
+
 import javax.microedition.khronos.opengles.GL10;
 
+import dat255.autumn2012.deathrally.R;
 import dat255.autumn2012.deathrally.game.graphics.Mesh;
 import dat255.autumn2012.deathrally.game.graphics.Rectangle;
 import dat255.autumn2012.deathrally.game.graphics.Triangle;
@@ -35,9 +40,14 @@ public class VisualVehicle extends VisualEntity {
 	private float px;
 	private float py;
 	private float direction = 0.0f;
+	private static int image = R.drawable.test_car;
+	
+	//Texture
+	private FloatBuffer textureBuffer;
+	private float texture[];
 	
 	public VisualVehicle(float px, float py){
-		super(new Rectangle(px,py,0.2f,0.4f));
+		super(new Rectangle(px,py,0.2f,0.4f), image, new int[1]);
 		
 		this.px = px;
 		this.py = py;
@@ -48,7 +58,8 @@ public class VisualVehicle extends VisualEntity {
 				0.0f, 1.0f,  //0
 				0.0f, 0.0f   //1
 		};
-		representation.setTextureMatrix(textureMatrix);
+		setTextureMatrix(textureMatrix);
+		setHasTexture();
 	}
 	
 	public void update(float px, float py, float direction){
@@ -61,12 +72,33 @@ public class VisualVehicle extends VisualEntity {
 	public void display(GL10 gl) {
 		representation.refresh(px,py,direction);
 		gl.glEnable(GL10.GL_TEXTURE_2D);
-		gl.glBindTexture(GL10.GL_TEXTURE_2D, representation.getTexturePointer()[0]);
+		gl.glBindTexture(GL10.GL_TEXTURE_2D, getTexturePointer()[0]);
 		gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
-		gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, representation.getTextureBuffer());
+		gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, getTextureBuffer());
 		representation.draw(gl);
 		gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
 		gl.glDisable(GL10.GL_TEXTURE_2D);
+	}
+	
+	public int getImage(){
+		return image;
+	}
+	
+	public void setTextureMatrix(float[] texture){
+		this.texture = texture;
+		ByteBuffer byteBuffer = ByteBuffer.allocateDirect(texture.length * 4);
+		byteBuffer.order(ByteOrder.nativeOrder());
+		textureBuffer = byteBuffer.asFloatBuffer();
+		textureBuffer.put(this.texture);
+		textureBuffer.position(0);
+	}
+	
+	public int[] getTexturePointer(){
+		return texturePointer;
+	}
+	
+	public FloatBuffer getTextureBuffer(){
+		return textureBuffer;
 	}
 
 }
