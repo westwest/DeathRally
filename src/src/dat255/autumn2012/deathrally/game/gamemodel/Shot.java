@@ -12,14 +12,16 @@ public abstract class Shot extends MovableEntity {
 		this.dist = dist;
 	}
 	
-	public void update(){
+	public void refresh(){
 		if(dist > 0){
-			super.update();
+			super.refresh();
 			dist--;
 		} else{
-			//Remove, explode, whatever
+			onReachedRange();
 		}
 	}
+	
+	protected abstract void onReachedRange();
 	
 	public float getVelocity(){
 		return velocity;

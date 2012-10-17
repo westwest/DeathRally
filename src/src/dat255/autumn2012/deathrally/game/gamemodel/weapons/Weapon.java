@@ -1,4 +1,4 @@
-package dat255.autumn2012.deathrally.game.gamemodel;
+package dat255.autumn2012.deathrally.game.gamemodel.weapons;
 
 public abstract class Weapon {
 	//Ammo-related

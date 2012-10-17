@@ -1,4 +1,5 @@
-package dat255.autumn2012.deathrally.game.gamemodel;
+package dat255.autumn2012.deathrally.game.gamemodel.weapons;
+
 
 public class AK47 extends Weapon {
 	float posX;
