@@ -20,8 +20,8 @@
 package dat255.autumn2012.deathrally.game.gamemodel;
 
 public class Player {
-	String name;
-	Vehicle vehicle;
+	private String name;
+	private Vehicle vehicle;
 	int id;
 	
 	public Player(String name) {
