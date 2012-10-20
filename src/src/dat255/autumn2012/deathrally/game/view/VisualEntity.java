@@ -76,7 +76,7 @@ public abstract class VisualEntity {
 	}
 	
 	public void setTextureMatrix(float[] t){
-		texture = t;
+		texture = t.clone();
 		ByteBuffer byteBuffer = ByteBuffer.allocateDirect(texture.length * byteLength);
 		byteBuffer.order(ByteOrder.nativeOrder());
 		textureBuffer = byteBuffer.asFloatBuffer();
