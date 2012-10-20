@@ -20,6 +20,7 @@
 package dat255.autumn2012.deathrally.game.view;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -41,7 +42,7 @@ import android.opengl.GLU;
 public class GameRenderer implements Renderer {
 	private static volatile GameRenderer instance;
 	private static Context context;
-	private static ArrayList<VisualEntity> drawObjs = new ArrayList<VisualEntity>();
+	private static List<VisualEntity> drawObjs = new ArrayList<VisualEntity>();
 	
 	private static float[] modelViewMatrix = new float[16];
 	private static float[] projectionMatrix = new float[16];
@@ -69,7 +70,7 @@ public class GameRenderer implements Renderer {
 		drawObjs.add(ve);
 	}
 	
-	public void addDrawObj(ArrayList<VisualEntity> drawObjsList){
+	public void addDrawObj(List<VisualEntity> drawObjsList){
 		for(VisualEntity d : drawObjsList){
 			drawObjs.add(d);
 		}
