@@ -50,6 +50,8 @@ public final class Players {
 	}
 	
 	public void setActivePlayer(Player p){
-		activePlayer = p;
+		if(p != null){
+			activePlayer = p;
+		}
 	}
 }
