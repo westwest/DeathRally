@@ -1,36 +1,74 @@
+/**
+ * 
+ */
 package dat255.autumn2012.deathrally.test;
 
-import dat255.autumn2012.deathrally.MainActivity;
 import android.app.Instrumentation;
-import android.test.ActivityTestCase;
+import android.test.ActivityInstrumentationTestCase2;
+import android.test.UiThreadTest;
+import android.util.Log;
 import android.widget.Button;
+import dat255.autumn2012.deathrally.*;
+import dat255.autumn2012.deathrally.R;
+import android.util.Log;
 
-public class MainActivityTest extends ActivityTestCase {
-	 private MainActivity activity;
-	 private Instrumentation instrumentation;
-	 private Button startGameButton;
-	 
-	 public MainActivityTest () {
-		super();
-	 }
-	 
-	 @Override
+/**
+ * @author Stugatz
+ *
+ */
+public class MainActivityTest extends ActivityInstrumentationTestCase2 <MainActivity> {
+	private static final String TAG = MainActivityTest.class.getSimpleName();
+	private Instrumentation instrumentation; 
+	private MainActivity mainActivity;
+	private Button startGameButton;
+	
+	/**
+	 * @param name
+	 */
+	public MainActivityTest() {
+		super("dat255.autumn2012.deathrally", MainActivity.class);	
+	}
+
+	/* (non-Javadoc)
+	 * @see android.test.ActivityInstrumentationTestCase2#setUp()
+	 */
 	protected void setUp() throws Exception {
 		super.setUp();
-		activity = (MainActivity) getActivity();
 		instrumentation = getInstrumentation();
-		startGameButton = (Button) activity.findViewById(dat255.autumn2012.deathrally.R.menu.activity_main);
+		mainActivity = (MainActivity) getActivity();
+		startGameButton = (Button) mainActivity.findViewById(R.id.button1);
+		  Log.d(TAG, startGameButton.getText().toString());
 	}
-	 
-	 
-	void newGameTest () {
-		activity.runOnUiThread(new Runnable() {
+
+	/* (non-Javadoc)
+	 * @see android.test.ActivityInstrumentationTestCase2#tearDown()
+	 */
+	
+	@UiThreadTest
+	public void test_newGame () {
+		this.setActivityInitialTouchMode(true);
+		
+		mainActivity.runOnUiThread(new Runnable() {
 			  //@Override
 			  public void run() {
 				  startGameButton.performClick();
 			  }
 			});
 		
-		instrumentation.waitForIdleSync();
+		//instrumentation.waitForIdleSync();
+		
+		// Test if game window has focus
+		assertEquals(mainActivity.hasWindowFocus(), true);
+		
 	}
+	
+
+	public void testTheTest () {
+		assertEquals(true, true);
+	}
+	
+	protected void tearDown() throws Exception {
+		super.tearDown();
+	}
+
 }
