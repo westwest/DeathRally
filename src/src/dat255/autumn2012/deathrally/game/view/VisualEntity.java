@@ -40,6 +40,7 @@ import android.util.Log;
  */
 public abstract class VisualEntity {
 	private static final String TAG = "VisualEntity";
+	private final int byteLength = 4;
 	private int texturePointer[] = new int[1];
 	private FloatBuffer textureBuffer;
 	private float texture[];
@@ -74,9 +75,9 @@ public abstract class VisualEntity {
 		}
 	}
 	
-	public void setTextureMatrix(float[] texture){
-		this.texture = texture;
-		ByteBuffer byteBuffer = ByteBuffer.allocateDirect(texture.length * 4);
+	public void setTextureMatrix(float[] t){
+		texture = t.clone();
+		ByteBuffer byteBuffer = ByteBuffer.allocateDirect(texture.length * byteLength);
 		byteBuffer.order(ByteOrder.nativeOrder());
 		textureBuffer = byteBuffer.asFloatBuffer();
 		textureBuffer.put(texture);

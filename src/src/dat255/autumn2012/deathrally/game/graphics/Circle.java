@@ -27,13 +27,19 @@ public class Circle extends Mesh {
 		private float[] vertices = new float[nrPoints *3];
 		private short[] indices = new short[nrPoints];
 		
-	
+	/**
+	 * Creates a new circle centered around px,py and with radius radius 
+	 * expressed in glCoordinates. It uses GL_LINE_LOOP over "enough" (in
+	 * this context nrPoints=30) vertices to create a "crisp" circle.
+	 * @param px
+	 * @param py
+	 * @param radius
+	 */
 	public Circle(float px, float py, float radius){
 		super(px,py, GL10.GL_LINE_LOOP);
 		
 		double relAngle = Math.pow(nrPoints, -1)*2*Math.PI;
 		for(int i = 0; i< nrPoints; i++){
-			//x, y and z coords for each point;
 			vertices[i*3] = (float) (Math.cos(relAngle*i)*radius);
 			vertices[i*3+1] = (float) (Math.sin(relAngle*i)*radius);
 			vertices[i*3+2] = 0.0f;

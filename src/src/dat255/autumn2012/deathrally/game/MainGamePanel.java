@@ -37,11 +37,11 @@ public class MainGamePanel extends GLSurfaceView  {
 	private GameRenderer gameRenderer;
 	
 	private static final String TAG = MainGamePanel.class.getSimpleName();
-	float mPreviousX;
-	float mPreviousY;
+	private float mPreviousX;
+	private float mPreviousY;
 	
-	Joystick joystick;
-	Player user;
+	private Joystick joystick;
+	private Player user;
 	
 	public MainGamePanel(Context context) {		
 		super(context);

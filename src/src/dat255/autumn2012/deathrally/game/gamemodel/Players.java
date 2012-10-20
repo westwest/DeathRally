@@ -27,7 +27,7 @@ package dat255.autumn2012.deathrally.game.gamemodel;
  * @author Johannes Vestlund
  *
  */
-public class Players {
+public final class Players {
 	private static volatile Players instance = null;
 	private Player activePlayer;
 	
@@ -50,6 +50,8 @@ public class Players {
 	}
 	
 	public void setActivePlayer(Player p){
-		activePlayer = p;
+		if(p != null){
+			activePlayer = p;
+		}
 	}
 }

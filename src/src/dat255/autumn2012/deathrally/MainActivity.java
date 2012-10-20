@@ -42,7 +42,6 @@ public class MainActivity extends Activity {
     }
     
     public void launchGame(View view){
-    	System.out.println("Launch Game!");
     	Intent intent = new Intent(this, DeathRallyGame.class);
     	startActivity(intent);
     }

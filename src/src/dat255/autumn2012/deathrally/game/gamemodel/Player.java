@@ -20,21 +20,50 @@
 package dat255.autumn2012.deathrally.game.gamemodel;
 
 public class Player {
-	String name;
-	Vehicle vehicle;
+	private static String defaultName = "Anonymous";
+	private String name;
+	private Vehicle vehicle;
 	int id;
 	
 	public Player(String name) {
-		
+		if(isName(name)){
+			this.name = name;
+		}else
+			this.name = defaultName;
 	}
 	
-	public void setVehicle() {
-		
+	public String getName(){
+		return name;
+	}
+	
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
 	}
 	
 	public Vehicle getVehicle() {
-		// TODO
-		return null;
+		return vehicle;
+	}
+	
+	public boolean hasVehicle(){
+		return vehicle != null;
+	}
+	
+	public String toString(){
+		return Player.class.getSimpleName() + ": " + getName();
+	}
+	
+	public static String getDefaultName(){
+		return defaultName;
+	}
+	
+	private boolean isName(String name){
+		if(name == null){
+			return false;
+		}
+		if(name.isEmpty()){
+			return false;
+		}
+		return true;
 	}
 	
 }

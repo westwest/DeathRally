@@ -28,8 +28,8 @@ import dat255.autumn2012.deathrally.game.gamemodel.*;
 import dat255.autumn2012.deathrally.game.view.*;
 
 public class DeathRallyGame extends Activity {
-	MainGamePanel view;
-	GameLoop gameLoop;
+	private MainGamePanel view;
+	private GameLoop gameLoop;
 	
 	private static final String TAG = DeathRallyGame.class.getSimpleName();
 	
