@@ -39,7 +39,7 @@ import android.opengl.GLU;
  *
  */
 
-public class GameRenderer implements Renderer {
+public final class GameRenderer implements Renderer {
 	private static volatile GameRenderer instance;
 	private static Context context;
 	private static List<VisualEntity> drawObjs = new ArrayList<VisualEntity>();

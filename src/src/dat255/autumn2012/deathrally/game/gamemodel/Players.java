@@ -27,7 +27,7 @@ package dat255.autumn2012.deathrally.game.gamemodel;
  * @author Johannes Vestlund
  *
  */
-public class Players {
+public final class Players {
 	private static volatile Players instance = null;
 	private Player activePlayer;
 	
