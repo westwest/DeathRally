@@ -70,8 +70,9 @@ public class Joystick {
 	public void reset(){
 		controller.recieveAction(owner, GameAction.ACCELERATE, 0);
 		controller.recieveAction(owner, GameAction.TURN, 0);
-		if(vJoystick != null)
+		if(vJoystick != null){
 			vJoystick.destroy();
+		}
 		vJoystick = null;
 	}
 	
