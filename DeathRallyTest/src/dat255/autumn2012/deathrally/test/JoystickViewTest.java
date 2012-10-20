@@ -17,7 +17,7 @@ public class JoystickViewTest extends AndroidTestCase {
 	}
 	
 	public void testBoundary(){
-		//assert
+		assertTrue("Boundary exists", jw.getBoundary() != null);
 	}
 
 	protected void tearDown() throws Exception {

@@ -22,9 +22,10 @@ package dat255.autumn2012.deathrally.game.view;
 import javax.microedition.khronos.opengles.GL10;
 
 import dat255.autumn2012.deathrally.game.graphics.Circle;
+import dat255.autumn2012.deathrally.game.graphics.Mesh;
 
 public class JoystickView extends VisualEntity{
-	Circle boundary;
+	private Circle boundary;
 	
 	public JoystickView(float px, float py, float radius){
 		boundary = new Circle(px,py,radius);
@@ -41,5 +42,9 @@ public class JoystickView extends VisualEntity{
 	
 	public String toString(){
 		return "JoystickView";
+	}
+	
+	public Mesh getBoundary(){
+		return boundary;
 	}
 }
