@@ -19,7 +19,7 @@
 
 package project.gamedev.deathrally.game;
 
-import project.gamedev.deathrally.game.gamemodel.*;
+import project.gamedev.deathrally.game.model.*;
 import android.util.Log;
 import android.view.SurfaceHolder;
 /**

@@ -21,8 +21,8 @@ package project.gamedev.deathrally.game.controls;
 
 
 import project.gamedev.deathrally.game.MainGamePanel;
-import project.gamedev.deathrally.game.gamemodel.GameAction;
-import project.gamedev.deathrally.game.gamemodel.Player;
+import project.gamedev.deathrally.game.model.GameAction;
+import project.gamedev.deathrally.game.model.Player;
 import project.gamedev.deathrally.game.view.GameRenderer;
 import project.gamedev.deathrally.game.view.JoystickView;
 import android.opengl.GLU;
