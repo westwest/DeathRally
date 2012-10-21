@@ -17,13 +17,14 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package dat255.autumn2012.deathrally.game.view;
+package project.gamedev.deathrally.game.view;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import dat255.autumn2012.deathrally.game.graphics.Mesh;
-import dat255.autumn2012.deathrally.game.graphics.Rectangle;
-import dat255.autumn2012.deathrally.game.graphics.Triangle;
+import project.gamedev.deathrally.game.graphics.Mesh;
+import project.gamedev.deathrally.game.graphics.Rectangle;
+import project.gamedev.deathrally.game.graphics.Triangle;
+
 
 /**
  * Represent the view of vehicles. Basically provides an interface between

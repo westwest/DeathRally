@@ -1,7 +1,7 @@
 package dat255.autumn2012.deathrally.test;
 
-import dat255.autumn2012.deathrally.game.gamemodel.Player;
-import dat255.autumn2012.deathrally.game.gamemodel.Vehicle;
+import project.gamedev.deathrally.game.gamemodel.Player;
+import project.gamedev.deathrally.game.gamemodel.Vehicle;
 import android.test.AndroidTestCase;
 
 public class PlayerTest extends AndroidTestCase {

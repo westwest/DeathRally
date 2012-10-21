@@ -17,41 +17,40 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+package project.gamedev.deathrally.game;
 
-package dat255.autumn2012.deathrally.game.gamemodel;
 
-/**
- * Class is responsible for managing players. Key is keeping track of who's active. There
- * have to be only one instance in the system, so singleton is used. 
- * 
- * @author Johannes Vestlund
- *
- */
-public final class Players {
-	private static volatile Players instance = null;
-	private Player activePlayer;
+import project.gamedev.deathrally.game.gamemodel.*;
+import project.gamedev.deathrally.game.view.*;
+import android.app.Activity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Window;
+
+public class DeathRallyGame extends Activity {
+	private MainGamePanel view;
+	private GameLoop gameLoop;
 	
-	private Players(){
+	private static final String TAG = DeathRallyGame.class.getSimpleName();
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {				
+		super.onCreate(savedInstanceState);		
+		
+		Log.d(TAG, "game activity created");
+		view = new MainGamePanel(this);
+		setContentView(view);
 	}
 	
-	public static Players getInstance(){
-		if(instance == null){
-			synchronized( Players .class){
-				if(instance == null){
-					instance = new Players();
-				}
-			}
-		}	
-		return instance;
+	protected void onPause() {
+		super.onPause();
+		view.onPause();
 	}
 	
-	public Player getActivePlayer(){
-		return activePlayer;
+	protected void onResume() {
+		super.onResume();
+		view.onResume();
 	}
-	
-	public void setActivePlayer(Player p){
-		if(p != null){
-			activePlayer = p;
-		}
-	}
+
+
 }

@@ -17,11 +17,11 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package dat255.autumn2012.deathrally.game;
+package project.gamedev.deathrally.game;
 
+import project.gamedev.deathrally.game.gamemodel.*;
 import android.util.Log;
 import android.view.SurfaceHolder;
-import dat255.autumn2012.deathrally.game.gamemodel.*;
 /**
  * @author Stugatz
  * Game loop, basic design taken from "http://obviam.net/index.php/a-very-basic-the-game-loop-for-android/"

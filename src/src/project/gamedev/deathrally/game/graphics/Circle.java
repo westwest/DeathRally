@@ -17,30 +17,36 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package dat255.autumn2012.deathrally.game.graphics;
+package project.gamedev.deathrally.game.graphics;
 
 import javax.microedition.khronos.opengles.GL10;
 
 
-/**
- * Developed from square-class in public domain. There are similarities, but code has been significantly
- * modified and the class has been adapted to support motion.
- * Source: http://www.jayway.com/2009/12/04/opengl-es-tutorial-for-android-part-ii-building-a-polygon/
- * 
- * @author Johannes Vestlund
- *
- */
-public class Triangle extends Mesh {
-	private static final String TAG = Triangle.class.getSimpleName();
-	private short indices[] = {0,1,2};
-	
-	public Triangle(float width, float height, float px, float py){
-		super(px,py, GL10.GL_TRIANGLES);
-		float[] vertices = {
-				-width/2, -height/2, 0.0f,
-				0.0f, height/2, 0.0f,
-				width/2, -height/2, 0.0f 
-		};
+public class Circle extends Mesh {
+		private int nrPoints = 30;
+		private float[] vertices = new float[nrPoints *3];
+		private short[] indices = new short[nrPoints];
+		
+	/**
+	 * Creates a new circle centered around px,py and with radius radius 
+	 * expressed in glCoordinates. It uses GL_LINE_LOOP over "enough" (in
+	 * this context nrPoints=30) vertices to create a "crisp" circle.
+	 * @param px
+	 * @param py
+	 * @param radius
+	 */
+	public Circle(float px, float py, float radius){
+		super(px,py, GL10.GL_LINE_LOOP);
+		
+		double relAngle = Math.pow(nrPoints, -1)*2*Math.PI;
+		for(int i = 0; i< nrPoints; i++){
+			vertices[i*3] = (float) (Math.cos(relAngle*i)*radius);
+			vertices[i*3+1] = (float) (Math.sin(relAngle*i)*radius);
+			vertices[i*3+2] = 0.0f;
+			
+			indices[i] = (short) i;
+		}
+		
 		setVertices(vertices);
 		setIndices(indices);
 	}

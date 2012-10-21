@@ -17,10 +17,11 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package dat255.autumn2012.deathrally.game.constants;
+package project.gamedev.deathrally.game.gamemodel;
 
-public enum LevelName {
-	LEVEL_1,
-	LEVEL_2,
-	LEVEL_3
+
+public enum GameAction {
+	TURN,
+	ACCELERATE,
+	SHOOT,
 }

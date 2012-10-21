@@ -1,4 +1,4 @@
-package dat255.autumn2012.deathrally.game.gamemodel;
+package project.gamedev.deathrally.game.gamemodel;
 
 public abstract class MovableEntity extends Entity {
 	public void move(){};

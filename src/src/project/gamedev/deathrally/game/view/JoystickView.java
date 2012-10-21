@@ -17,40 +17,35 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package dat255.autumn2012.deathrally.game;
+package project.gamedev.deathrally.game.view;
+
+import javax.microedition.khronos.opengles.GL10;
+
+import project.gamedev.deathrally.game.graphics.Circle;
+import project.gamedev.deathrally.game.graphics.Mesh;
 
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Window;
-import dat255.autumn2012.deathrally.game.gamemodel.*;
-import dat255.autumn2012.deathrally.game.view.*;
-
-public class DeathRallyGame extends Activity {
-	private MainGamePanel view;
-	private GameLoop gameLoop;
+public class JoystickView extends VisualEntity{
+	private Circle boundary;
 	
-	private static final String TAG = DeathRallyGame.class.getSimpleName();
-	
+	public JoystickView(float px, float py, float radius){
+		boundary = new Circle(px,py,radius);
+	}
+
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {				
-		super.onCreate(savedInstanceState);		
-		
-		Log.d(TAG, "game activity created");
-		view = new MainGamePanel(this);
-		setContentView(view);
+	public void display(GL10 gl) {
+		boundary.draw(gl);	
 	}
 	
-	protected void onPause() {
-		super.onPause();
-		view.onPause();
+	public void destroy(){
+		GameRenderer.disconnect(this);
 	}
 	
-	protected void onResume() {
-		super.onResume();
-		view.onResume();
+	public String toString(){
+		return "JoystickView";
 	}
-
-
+	
+	public Mesh getBoundary(){
+		return boundary;
+	}
 }

@@ -1,6 +1,6 @@
 package dat255.autumn2012.deathrally.test;
 
-import dat255.autumn2012.deathrally.game.view.JoystickView;
+import project.gamedev.deathrally.game.view.JoystickView;
 import android.test.AndroidTestCase;
 
 public class JoystickViewTest extends AndroidTestCase {

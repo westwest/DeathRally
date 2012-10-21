@@ -17,7 +17,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package dat255.autumn2012.deathrally.game.view;
+package project.gamedev.deathrally.game.view;
 
 import java.util.ArrayList;
 import java.util.List;

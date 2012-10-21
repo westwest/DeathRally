@@ -17,34 +17,31 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package dat255.autumn2012.deathrally.game.view;
+package project.gamedev.deathrally.game.graphics;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import dat255.autumn2012.deathrally.game.graphics.Circle;
-import dat255.autumn2012.deathrally.game.graphics.Mesh;
 
-public class JoystickView extends VisualEntity{
-	private Circle boundary;
+/**
+ * Developed from square-class in public domain. There are similarities, but code has been significantly
+ * modified and the class has been adapted to support motion.
+ * Source: http://www.jayway.com/2009/12/04/opengl-es-tutorial-for-android-part-ii-building-a-polygon/
+ * 
+ * @author Johannes Vestlund
+ *
+ */
+public class Triangle extends Mesh {
+	private static final String TAG = Triangle.class.getSimpleName();
+	private short indices[] = {0,1,2};
 	
-	public JoystickView(float px, float py, float radius){
-		boundary = new Circle(px,py,radius);
-	}
-
-	@Override
-	public void display(GL10 gl) {
-		boundary.draw(gl);	
-	}
-	
-	public void destroy(){
-		GameRenderer.disconnect(this);
-	}
-	
-	public String toString(){
-		return "JoystickView";
-	}
-	
-	public Mesh getBoundary(){
-		return boundary;
+	public Triangle(float width, float height, float px, float py){
+		super(px,py, GL10.GL_TRIANGLES);
+		float[] vertices = {
+				-width/2, -height/2, 0.0f,
+				0.0f, height/2, 0.0f,
+				width/2, -height/2, 0.0f 
+		};
+		setVertices(vertices);
+		setIndices(indices);
 	}
 }
