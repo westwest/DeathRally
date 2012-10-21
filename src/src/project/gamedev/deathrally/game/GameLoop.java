@@ -67,7 +67,7 @@ public class GameLoop extends Thread {
 		while (isRunning) {
 		loops = 0;
         	while(System.nanoTime() > next_game_tick && loops < MAX_FRAMESKIP) {
-	            model.update();
+	            model.update(0);
 	
 	            next_game_tick += SKIP_TICKS;
 	            loops++;

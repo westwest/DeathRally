@@ -69,7 +69,7 @@ public class Joystick {
 	 */
 	public void reset(){
 		controller.recieveAction(owner, GameAction.ACCELERATE, 0);
-		controller.recieveAction(owner, GameAction.TURN, 0);
+		controller.recieveAction(owner, GameAction.TURN_LEFT, 0);
 		if(vJoystick != null){
 			vJoystick.destroy();
 		}
@@ -90,7 +90,14 @@ public class Joystick {
 			float dy = py-centerY;
 			
 			controller.recieveAction(owner, GameAction.ACCELERATE, dy/radius);
-			controller.recieveAction(owner, GameAction.TURN, dx/radius);
+			
+			// There's no TURN game action so I inserted this if statement to handle direction
+			if (dx <= 0) {
+				controller.recieveAction(owner, GameAction.TURN_LEFT, (dx * -1) / radius);
+			} else {
+				controller.recieveAction(owner, GameAction.TURN_RIGHT, dx/radius);
+			}
+			
 		}
 	}
 

@@ -1,7 +1,8 @@
 package project.gamedev.deathrally.test;
 
-import project.gamedev.deathrally.game.gamemodel.Player;
-import project.gamedev.deathrally.game.gamemodel.Vehicle;
+import project.gamedev.deathrally.game.model.Level;
+import project.gamedev.deathrally.game.model.Player;
+import project.gamedev.deathrally.game.model.Vehicle;
 import android.test.AndroidTestCase;
 
 public class PlayerTest extends AndroidTestCase {
@@ -51,9 +52,10 @@ public class PlayerTest extends AndroidTestCase {
 	}
 	
 	public void testVehicleOwnage(){
-		Vehicle v = new Vehicle();
 		Player p = new Player("JoeDoe");
+		Vehicle v = new Vehicle(new Level(), p);
 		p.setVehicle(v);
+		
 		assertTrue("Player should own vehicle", p.hasVehicle());
 		assertEquals("Player should own vehicle v", p.getVehicle(),v);	
 	}
