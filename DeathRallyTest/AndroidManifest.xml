@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="dat255.autumn2012.deathrally.test"
+    package="project.gamedev.deathrally.test"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -8,7 +8,7 @@
 
     <instrumentation
         android:name="android.test.InstrumentationTestRunner"
-        android:targetPackage="dat255.autumn2012.deathrally" />
+        android:targetPackage="project.gamedev.deathrally" />
 
     <application
         android:icon="@drawable/ic_launcher"
