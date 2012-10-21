@@ -21,7 +21,6 @@ package project.gamedev.deathrally.game;
 
 
 import project.gamedev.deathrally.game.model.*;
-import project.gamedev.deathrally.visual.*;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
