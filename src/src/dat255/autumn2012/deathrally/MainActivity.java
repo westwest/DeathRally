@@ -21,11 +21,15 @@ package dat255.autumn2012.deathrally;
 
 import dat255.autumn2012.deathrally.R;
 import dat255.autumn2012.deathrally.game.DeathRallyGame;
+import dat255.autumn2012.deathrally.game.gamemodel.Player;
+import dat255.autumn2012.deathrally.game.gamemodel.Players;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.EditText;
 
 public class MainActivity extends Activity {
 
@@ -41,8 +45,28 @@ public class MainActivity extends Activity {
         return true;
     }
     
+    public boolean onPrepareOptionsMenu(Menu menu){
+    	getMenuInflater().inflate(R.menu.activity_main, menu);
+		return true;
+    }
+    
     public void launchGame(View view){
     	Intent intent = new Intent(this, DeathRallyGame.class);
     	startActivity(intent);
+    }
+    
+    public void launchCreateProfileUI(View view){
+    	setContentView(R.layout.create_player);
+    	openOptionsMenu();
+    }
+    
+    public void createNewProfile(View view){
+    	EditText mEdit = (EditText) findViewById(R.id.editText1);
+    	String name = mEdit.getText().toString();
+    	Log.d("CreatePlayer", name);
+    	Players admin = Players.getInstance();
+    	Player player = new Player(name);
+    	admin.setActivePlayer(player);
+    	setContentView(R.layout.activity_main);
     }
 }

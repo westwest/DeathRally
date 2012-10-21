@@ -6,6 +6,8 @@ import android.test.AndroidTestCase;
 
 public class PlayerTest extends AndroidTestCase {
 
+	String stdName = "JoeDoe";
+	
 	protected void setUp() throws Exception {
 		super.setUp();
 	}
@@ -18,11 +20,36 @@ public class PlayerTest extends AndroidTestCase {
 				p2.getName(), Player.getDefaultName());
 	}
 	public void testTypicalInit(){
-		String name = "JoeDoe";
-		Player p = new Player(name);
-		assertEquals("Player should have correct name", p.getName(), name);
+		Player p = new Player(stdName);
+		assertEquals("Player should have correct name", stdName, p.getName());
 		assertTrue("Player should not own vehicle", !p.hasVehicle());
 	}
+	
+	public void testGetMoney(){
+		Player p = new Player(stdName);
+		assertEquals("Player should have standard ammount of money",
+				10000, p.getMoney());
+	}
+	
+	public void testAddMoney(){
+		int addAmount = 100;
+		Player p = new Player(stdName);
+		p.addMoney(addAmount);
+		assertEquals("Players wallet should have grown by "+addAmount,10000+addAmount,p.getMoney());
+	}
+	
+	public void testPay(){
+		final int startWallet = 10000;
+		int buySum = 5000;
+		Player p = new Player(stdName);
+		assertTrue("Player should be able to afford 5000 first time",p.pay(buySum));
+		assertEquals("Player wallet should be "+(startWallet-buySum), 
+				startWallet-buySum, p.getMoney());
+		int currWallet = p.getMoney();
+		assertTrue("Players should not be ablle to afford 5000 another time", !p.pay(buySum));
+		assertEquals("Player wallet should be unchanged", currWallet, p.getMoney());
+	}
+	
 	public void testVehicleOwnage(){
 		Vehicle v = new Vehicle();
 		Player p = new Player("JoeDoe");

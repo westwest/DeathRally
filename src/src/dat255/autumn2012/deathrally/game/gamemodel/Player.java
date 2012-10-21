@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012 Mike Phoohad <anno.tao@gmail.com>
+ * Copyright (c) 2012 Johannes Vestlund <Johannes@westlundarna.se>
  * 
  * This file is part of DeathRally
  * 
@@ -19,17 +19,74 @@
 
 package dat255.autumn2012.deathrally.game.gamemodel;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable{
+	/**
+	 * Generated serialVersion
+	 */
+	private static final long serialVersionUID = 6336819303006304934L;
 	private static String defaultName = "Anonymous";
 	private String name;
 	private Vehicle vehicle;
-	int id;
+	private int id;
+	/**
+	 * Standard amount of money, may be overridden by constructor
+	 */
+	private int money = 10000;
 	
+	/**
+	 * Standard constructor for initializing completely new player. If
+	 * name is invalid it defaults to "Anonymous"
+	 * @param name Name of player. 
+	 */
 	public Player(String name) {
-		if(isName(name)){
-			this.name = name;
-		}else
-			this.name = defaultName;
+		setName(name);
+	}
+	
+	/**
+	 * Constructor for initializing saved player (or directly feed
+	 * in player with more flexibility for test or cheat purpose).
+	 * Invalid name defaults to "Anonymous".
+	 * @param name Name of player.
+	 * @param money Amount of money player have
+	 * @param vehicle The vehicle player owns.
+	 */
+	public Player(String name, int money, Vehicle vehicle){
+		setName(name);
+		this.money = money;
+		this.vehicle = vehicle;
+	}
+	
+	/**
+	 * 
+	 * @return The amount of money player have at the moment
+	 */
+	public int getMoney(){
+		return money;
+	}
+	
+	/**
+	 * 
+	 * @param sum
+	 */
+	public void addMoney(int sum){
+		money += sum;
+	}
+	
+	/**
+	 * Attempt execute a payment. Will return false if player 
+	 * cannot pay
+	 * @param sum to be payed
+	 * @return True if player money > sum.
+	 */
+	public boolean pay(int sum){
+		if(money > sum){
+			money = money - sum;
+		}else{
+			return false;
+		}
+		return true;
 	}
 	
 	public String getName(){
@@ -56,6 +113,14 @@ public class Player {
 		return defaultName;
 	}
 	
+	private void setName(String name){
+		if(isName(name)){
+			this.name = name;
+		}else{
+			this.name = defaultName;
+		}
+	}
+	
 	private boolean isName(String name){
 		if(name == null){
 			return false;
@@ -66,4 +131,7 @@ public class Player {
 		return true;
 	}
 	
+	public boolean save(){
+		return false;
+	}
 }

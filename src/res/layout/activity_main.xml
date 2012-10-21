@@ -11,12 +11,19 @@
         android:layout_height="wrap_content"
         android:text="@string/main_menu"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create New Profile" 
+        android:onClick="launchCreateProfileUI"/>
 
     <Button
         android:id="@+id/button1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/new_game" 
+        android:text="Start Race" 
         android:onClick="launchGame" />
 
     <Button
