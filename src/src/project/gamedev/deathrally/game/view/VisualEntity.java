@@ -39,7 +39,6 @@ import android.util.Log;
  *
  */
 public abstract class VisualEntity {
-	private static final String TAG = "VisualEntity";
 	private final int byteLength = 4;
 	private int texturePointer[] = new int[1];
 	private FloatBuffer textureBuffer;

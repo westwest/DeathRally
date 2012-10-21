@@ -19,13 +19,9 @@
 
 package project.gamedev.deathrally.game;
 
-
-import project.gamedev.deathrally.game.gamemodel.*;
-import project.gamedev.deathrally.game.view.*;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Window;
 
 public class DeathRallyGame extends Activity {
 	private MainGamePanel view;

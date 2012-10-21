@@ -1,4 +1,4 @@
-package dat255.autumn2012.deathrally.test;
+package project.gamedev.deathrally.test;
 
 import project.gamedev.deathrally.game.gamemodel.Player;
 import project.gamedev.deathrally.game.gamemodel.Vehicle;
@@ -57,6 +57,21 @@ public class PlayerTest extends AndroidTestCase {
 		assertTrue("Player should own vehicle", p.hasVehicle());
 		assertEquals("Player should own vehicle v", p.getVehicle(),v);	
 	}
+	
+	public void testSave(){
+		Player p = new Player(stdName);
+		p.addMoney(100);
+		assertTrue("Save returned false => exceptions were thrown", p.save(getContext()));
+		
+	}
+	
+	public void testLoad(){
+		assertTrue("Load returned null => exceptions were thrown", 
+				Player.load(getContext(), stdName) != null);
+		assertTrue("Object is not instance of Player class", 
+				Player.load(getContext(), stdName) instanceof Player);
+	}
+	
 	public void testToString(){
 		String name = "R2D2";
 		Player p = new Player(name);
@@ -64,6 +79,7 @@ public class PlayerTest extends AndroidTestCase {
 	}
 	protected void tearDown() throws Exception {
 		super.tearDown();
+		Player.delete(stdName, getContext());
 	}
 
 }

@@ -19,21 +19,29 @@
 
 package project.gamedev.deathrally.game.gamemodel;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.io.StreamCorruptedException;
+
+import android.content.Context;
+import android.util.Log;
 
 public class Player implements Serializable{
 	/**
 	 * Generated serialVersion
 	 */
+	private static final int initialMoney = 10000;
 	private static final long serialVersionUID = 6336819303006304934L;
 	private static String defaultName = "Anonymous";
 	private String name;
 	private Vehicle vehicle;
-	private int id;
 	/**
 	 * Standard amount of money, may be overridden by constructor
 	 */
-	private int money = 10000;
+	private int money = initialMoney;
 	
 	/**
 	 * Standard constructor for initializing completely new player. If
@@ -131,7 +139,52 @@ public class Player implements Serializable{
 		return true;
 	}
 	
-	public boolean save(){
+	public boolean save(Context context){
+		String SAVENAME = name + ".txt";
+		try {
+			ObjectOutputStream OOS = new ObjectOutputStream(
+					context.openFileOutput(SAVENAME, Context.MODE_PRIVATE));
+			OOS.writeObject(this);
+			OOS.close();
+			return true;
+		} catch (FileNotFoundException e) {
+			Log.d("Player", "File not found.");
+			e.printStackTrace();
+		} catch (IOException e) {
+			Log.d("Player", "IOException");
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public static Player load(Context context, String SAVENAME){
+		if(!SAVENAME.contains(".txt")){
+			SAVENAME = SAVENAME+".txt";
+		}
+		try {
+			ObjectInputStream OIS = new ObjectInputStream(context.openFileInput(SAVENAME));
+			try {
+				Player p = (Player) OIS.readObject();
+				return p;
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (StreamCorruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static boolean delete(String name, Context c){
+		c.deleteFile(name+".txt");
 		return false;
 	}
 }

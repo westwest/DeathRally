@@ -51,12 +51,12 @@ public class GameLoop extends Thread {
 	//Constant Game Speed independent of Variable FPS method taken from
 	//"http://www.koonsolo.com/news/dewitters-gameloop/"
 	
-    final int TICKS_PER_SECOND = 25;
-    final int SKIP_TICKS = 1000 / TICKS_PER_SECOND;
-    final int MAX_FRAMESKIP = 5;
+    private final int TICKS_PER_SECOND = 25;
+    private final int SKIP_TICKS = 1000 / TICKS_PER_SECOND;
+    private final int MAX_FRAMESKIP = 5;
     
-    long next_game_tick = System.nanoTime();
-    int loops;
+    private long next_game_tick = System.nanoTime();
+    private int loops;
     //*could be used later* float interpolation;
     
 	@Override

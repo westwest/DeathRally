@@ -30,6 +30,7 @@ import project.gamedev.deathrally.game.view.VisualVehicle;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
+import android.util.Log;
 import android.view.MotionEvent;
 
 //Basic design taken from "http://obviam.net/index.php/a-very-basic-the-game-loop-for-android/"
@@ -38,17 +39,12 @@ public class MainGamePanel extends GLSurfaceView  {
 	private GameRenderer gameRenderer;
 	
 	private static final String TAG = MainGamePanel.class.getSimpleName();
-	private float mPreviousX;
-	private float mPreviousY;
 	
 	private Joystick joystick;
 	private Player user;
 	
 	public MainGamePanel(Context context) {		
 		super(context);
-		
-		//Dont target OpenGL 2.0 just yet
-		//setEGLContextClientVersion(2);
 		gameRenderer = GameRenderer.getInstance(context);		
 		setRenderer(gameRenderer);
 		
@@ -63,6 +59,7 @@ public class MainGamePanel extends GLSurfaceView  {
 		gameRenderer.addDrawObj(visualEntities);
 		
 		joystick = new Joystick(user, this);
+		Log.d(TAG,"MainGamePanel created successfully");
 	}
 	
 	public void addVisualObj(VisualEntity ve){

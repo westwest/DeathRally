@@ -21,6 +21,8 @@ package project.gamedev.deathrally.game.graphics;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import android.util.Log;
+
 
 /**
  * Developed from square-class in public domain. There are similarities, but code has been significantly
@@ -43,5 +45,6 @@ public class Triangle extends Mesh {
 		};
 		setVertices(vertices);
 		setIndices(indices);
+		Log.d(TAG,"Triangle created successfully");
 	}
 }

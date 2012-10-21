@@ -2,6 +2,8 @@ package project.gamedev.deathrally.game.graphics;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import android.util.Log;
+
 public class Rectangle extends Mesh{
 	private static final String TAG = Rectangle.class.getSimpleName();
 	//Painting CCW but remember shapes are rotated 180 by default
@@ -18,5 +20,6 @@ public class Rectangle extends Mesh{
 
 		setVertices(verticeList);
 		setIndices(indices);
+		Log.d(TAG, "Rectangle created successfully");
 	}
 }

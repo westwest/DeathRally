@@ -1,4 +1,4 @@
-package dat255.autumn2012.deathrally.test;
+package project.gamedev.deathrally.test;
 
 import project.gamedev.deathrally.game.view.JoystickView;
 import android.test.AndroidTestCase;
