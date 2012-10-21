@@ -19,13 +19,17 @@
 
 package project.gamedev.deathrally.game;
 
+
+import project.gamedev.deathrally.game.model.*;
+import project.gamedev.deathrally.visual.*;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Window;
 
 public class DeathRallyGame extends Activity {
-	private MainGamePanel view;
-	private GameLoop gameLoop;
+	MainGamePanel view;
+	GameLoop gameLoop;
 	
 	private static final String TAG = DeathRallyGame.class.getSimpleName();
 	
@@ -35,6 +39,25 @@ public class DeathRallyGame extends Activity {
 		
 		Log.d(TAG, "game activity created");
 		view = new MainGamePanel(this);
+		//gameLoop = new GameLoop(view.getHolder(), view);
+		
+		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		
+		/* Checking OpenGL support */
+		/*
+		final ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+		final ConfigurationInfo configurationInfo = activityManager.getDeviceConfigurationInfo();
+		final boolean supportsEs2 = configurationInfo.reqGlEsVersion >= 0x20000;
+		
+		//OpenGL ES 2.0 works on some devices, but seems a bit unstable on emulator. 
+		// For now ES 1.1 will be main attempt.
+		if(supportsEs2){
+			//glSurface.setEGLContextClientVersion(2);
+			System.out.println("ES2 supported");
+		}else{
+			System.out.println("ES2 not supported");
+		}
+		*/
 		setContentView(view);
 	}
 	
