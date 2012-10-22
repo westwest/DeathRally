@@ -22,8 +22,8 @@ package project.gamedev.deathrally.game;
 import java.util.ArrayList;
 
 import project.gamedev.deathrally.game.controls.Joystick;
-import project.gamedev.deathrally.game.gamemodel.GameAction;
-import project.gamedev.deathrally.game.gamemodel.Player;
+import project.gamedev.deathrally.game.model.GameAction;
+import project.gamedev.deathrally.game.model.Player;
 import project.gamedev.deathrally.game.view.GameRenderer;
 import project.gamedev.deathrally.game.view.VisualEntity;
 import project.gamedev.deathrally.game.view.VisualVehicle;
@@ -35,11 +35,10 @@ import android.view.MotionEvent;
 
 //Basic design taken from "http://obviam.net/index.php/a-very-basic-the-game-loop-for-android/"
 public class MainGamePanel extends GLSurfaceView  {
-
-	private GameRenderer gameRenderer;
-	
 	private static final String TAG = MainGamePanel.class.getSimpleName();
-	
+	private GameRenderer gameRenderer;
+	private GameLoop gameLoop;
+	private GameModel gameModel;
 	private Joystick joystick;
 	private Player user;
 	
@@ -47,6 +46,8 @@ public class MainGamePanel extends GLSurfaceView  {
 		super(context);
 		gameRenderer = GameRenderer.getInstance(context);		
 		setRenderer(gameRenderer);
+		gameModel = new GameModel();
+		gameLoop = new GameLoop(getHolder(), this, gameModel);
 		
 		getHolder().addCallback(this);		
 		setFocusable(true);
@@ -75,7 +76,6 @@ public class MainGamePanel extends GLSurfaceView  {
 	    float px = e.getX();
 	    float py = e.getY();
 	    
-	    
 	    switch (e.getAction()) {	    	
 	    	case MotionEvent.ACTION_DOWN:
 	    		if(px > 100 && px < 300){
@@ -92,9 +92,8 @@ public class MainGamePanel extends GLSurfaceView  {
 	    return true;
 	}
 
-	public void recieveAction(Player actor, GameAction action, float impulse) {
-		// TODO Auto-generated method stub
-		
+	public void recieveAction(GameAction action) {
+		gameModel.performAction(action);
 	}
 }
 

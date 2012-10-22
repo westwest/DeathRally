@@ -17,7 +17,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package project.gamedev.deathrally.game.gamemodel;
+package project.gamedev.deathrally.game.model;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

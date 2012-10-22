@@ -1,7 +1,7 @@
 package project.gamedev.deathrally.test;
 
-import project.gamedev.deathrally.game.gamemodel.Player;
-import project.gamedev.deathrally.game.gamemodel.Players;
+import project.gamedev.deathrally.game.model.Player;
+import project.gamedev.deathrally.game.model.Players;
 import android.test.AndroidTestCase;
 
 public class PlayersTest extends AndroidTestCase {

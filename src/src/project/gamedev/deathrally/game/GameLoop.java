@@ -19,7 +19,7 @@
 
 package project.gamedev.deathrally.game;
 
-import project.gamedev.deathrally.game.gamemodel.*;
+import project.gamedev.deathrally.game.model.*;
 import android.util.Log;
 import android.view.SurfaceHolder;
 /**
@@ -27,25 +27,35 @@ import android.view.SurfaceHolder;
  * Game loop, basic design taken from "http://obviam.net/index.php/a-very-basic-the-game-loop-for-android/"
  */
 public class GameLoop extends Thread {
-	//private SurfaceHolder surfaceHolder;
+	private static final String TAG = GameLoop.class.getSimpleName();
+	private SurfaceHolder surfaceHolder;
 	private MainGamePanel gamePanel;
 	private GameModel model;
 	private boolean isRunning = false;
-	//Useful for exception [note to self, Johannes]
-	private static final String TAG = GameLoop.class.getSimpleName();
 
 	
 	public GameLoop(SurfaceHolder surfaceHolder, MainGamePanel gamePanel, GameModel model) {
 		super();
-		//*will probably not be used here* this.surfaceHolder = surfaceHolder;
+		this.surfaceHolder = surfaceHolder;
 		this.gamePanel = gamePanel;
-		this.model = model;
-
+		this.model = new GameModel();
+		model.setPlayer(Players.getInstance().getActivePlayer());
+		Log.d(TAG,"GameLoop created successfully");
 	}
 
 	// game state
 	public void setRunning(boolean isRunning) {
 		this.isRunning = isRunning;
+	}
+	
+	public void startRace(){
+		this.isRunning = true;
+		this.model.startGame();
+	}
+	
+	public void endRace(){
+		this.isRunning = false;
+		this.model.endGame();
 	}
 	
 	//Constant Game Speed independent of Variable FPS method taken from
@@ -67,7 +77,7 @@ public class GameLoop extends Thread {
 		while (isRunning) {
 		loops = 0;
         	while(System.nanoTime() > next_game_tick && loops < MAX_FRAMESKIP) {
-	            model.update();
+	            model.update(1);
 	
 	            next_game_tick += SKIP_TICKS;
 	            loops++;

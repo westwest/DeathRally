@@ -18,7 +18,7 @@
  */
 
 
-package project.gamedev.deathrally.game.gamemodel;
+package project.gamedev.deathrally.game.model;
 
 /**
  * Class is responsible for managing players. Key is keeping track of who's active. There
