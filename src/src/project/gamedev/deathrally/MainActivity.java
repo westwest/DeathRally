@@ -20,8 +20,8 @@
 package project.gamedev.deathrally;
 
 import project.gamedev.deathrally.game.DeathRallyGame;
-import project.gamedev.deathrally.game.gamemodel.Player;
-import project.gamedev.deathrally.game.gamemodel.Players;
+import project.gamedev.deathrally.game.model.Player;
+import project.gamedev.deathrally.game.model.Players;
 import project.gamedev.deathrally.R;
 import android.os.Bundle;
 import android.app.Activity;

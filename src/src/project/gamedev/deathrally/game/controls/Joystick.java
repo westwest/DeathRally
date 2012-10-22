@@ -21,8 +21,8 @@ package project.gamedev.deathrally.game.controls;
 
 
 import project.gamedev.deathrally.game.MainGamePanel;
-import project.gamedev.deathrally.game.gamemodel.GameAction;
-import project.gamedev.deathrally.game.gamemodel.Player;
+import project.gamedev.deathrally.game.model.GameAction;
+import project.gamedev.deathrally.game.model.Player;
 import project.gamedev.deathrally.game.view.GameRenderer;
 import project.gamedev.deathrally.game.view.JoystickView;
 import android.opengl.GLU;
@@ -52,6 +52,9 @@ public class Joystick {
 		int[] viewport = GameRenderer.getViewport();
 		float posY = viewport[3] - py;
 		
+		/*
+		 * Remember to change to "new" implementation!
+		 */
 		GLU.gluUnProject(px, posY, 0, GameRenderer.getModelViewMatrix(), 0,
 				GameRenderer.getProjectionMatrix(), 0, viewport, 0, coordsOrigo, 0);
 		float[] coordsEdge = new float[16];
@@ -68,8 +71,10 @@ public class Joystick {
 	 * of the joystick should disappear and the actions should be reset.
 	 */
 	public void reset(){
-		controller.recieveAction(owner, GameAction.ACCELERATE, 0);
-		controller.recieveAction(owner, GameAction.TURN, 0);
+		/*
+		controller.recieveAction();
+		controller.recieveAction();
+		*/
 		if(vJoystick != null){
 			vJoystick.destroy();
 		}
@@ -89,8 +94,13 @@ public class Joystick {
 			float dx = px-centerX;
 			float dy = py-centerY;
 			
-			controller.recieveAction(owner, GameAction.ACCELERATE, dy/radius);
-			controller.recieveAction(owner, GameAction.TURN, dx/radius);
+			controller.recieveAction(GameAction.ACCELERATE);
+			if (dx <= 0) {
+				controller.recieveAction(GameAction.TURN_LEFT);
+			} else {
+				controller.recieveAction(GameAction.TURN_RIGHT);
+			}
+			
 		}
 	}
 

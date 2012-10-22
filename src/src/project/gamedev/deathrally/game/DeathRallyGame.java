@@ -18,14 +18,13 @@
  */
 
 package project.gamedev.deathrally.game;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Window;
 
 public class DeathRallyGame extends Activity {
-	private MainGamePanel view;
-	private GameLoop gameLoop;
+	MainGamePanel view;
 	
 	private static final String TAG = DeathRallyGame.class.getSimpleName();
 	
@@ -35,6 +34,7 @@ public class DeathRallyGame extends Activity {
 		
 		Log.d(TAG, "game activity created");
 		view = new MainGamePanel(this);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(view);
 	}
 	
