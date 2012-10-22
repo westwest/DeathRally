@@ -54,37 +54,7 @@ public class Level {
 	public int getPlayersRacePosition() {
 		return playersRacePosition;
 	}
-	
-	/**
-	 * Moves all entities according to their vectors and collision
-	 * 
-	 * @param int, time since last update
-	 */
-	public void update(int elapsedTime) {
-		Map<Entity, List<Entity>> collidedEntities = new HashMap<Entity, List<Entity>>();
 
-		for (Entity e : this.getEntities()) {
-			collidedEntities.put(e, new ArrayList<Entity>());
-		}
-
-		for (Entity e : this.getEntities()) {
-			e.update(elapsedTime);
-			move(e, collidedEntities);
-			checkCollision(e, collidedEntities);
-		}
-	}
-	
-	private void checkCollision(Entity e,
-			Map<Entity, List<Entity>> collidedEntities) {
-		float eMinX = e.getPosition().getX();
-		float eMaxX = e.getPosition().getX() + e.getHitbox().getWidth();
-		float eMinY = e.getPosition().getY();
-		float eMaxY = e.getPosition().getY() + e.getHitbox().getHeight();
-		
-		// TODO Complete the collision-check
-				
-	}
-	
 	/**
 	 * Returns a list of all entities that are contained in an area
 	 * 
@@ -107,6 +77,8 @@ public class Level {
 			float entityMinY = e.getPosition().getY();
 			float entityMaxY = e.getPosition().getY() + e.getHitbox().getHeight();
 			
+			
+			// I don't believe this works as a way to check if the two areas somehow overlaps or intersects with each other.
 			boolean isOverlap = ((maxX >= entityMinX) &&
 	                (maxY >= entityMinY) &&
 	                (minX <= entityMaxX) &&
@@ -127,6 +99,46 @@ public class Level {
 			}
 		}
 		return list;
+	}
+		
+	/**
+	 * Moves all entities according to their vectors and collision
+	 * 
+	 * @param int, time since last update
+	 */
+	public void update(int elapsedTime) {
+		Map<Entity, List<Entity>> collidedEntities = new HashMap<Entity, List<Entity>>();
+
+		for (Entity e : this.getEntities()) {
+			collidedEntities.put(e, new ArrayList<Entity>());
+		}
+
+		for (Entity e : this.getEntities()) {
+			e.update(elapsedTime);
+			move(e, collidedEntities);
+			checkCollision(e, collidedEntities);
+		}
+	}
+	
+	/*
+	 * Is used to check if there is a collision happening at the entities "area".
+	 */
+	private void checkCollision(Entity e,
+			Map<Entity, List<Entity>> collidedEntities) {
+		
+		List<Entity> collided = collidedEntities.get(e);
+		
+//		The area it searches is the entities area. 
+		for (Entity colliding : getEntitiesAt(e.getPosition().getX(), 
+				e.getPosition().getY(), 
+				e.getHitbox().getWidth(), 
+				e.getHitbox().getHeight())) {
+			if (!collided.contains(colliding)) {
+				colliding.collide(new CollisionEvent(e, Direction.NONE));
+				e.collide(new CollisionEvent(colliding, Direction.NONE));
+				collided.add(colliding);
+			}
+		}		
 	}
 	
 	private void move(Entity e, Map<Entity, List<Entity>> collidedEntities) {
