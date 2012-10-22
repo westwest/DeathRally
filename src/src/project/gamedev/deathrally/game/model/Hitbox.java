@@ -5,7 +5,7 @@ import java.awt.Dimension;
 /**
  * Represents an area which is used to define an entity's "hitbox"
  * (i.e. the area that other areas collide or interact with)
- * @author ???
+ * @author Mike Phoohad
  *
  */
 public class Hitbox {

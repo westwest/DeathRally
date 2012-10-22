@@ -2,7 +2,7 @@ package project.gamedev.deathrally.game.model;
 
 /**
  * This represents a two dimensional vector
- * @author ???
+ * @author Mike Phoohad
  *
  */
 public class Vector2D {

@@ -2,7 +2,7 @@ package project.gamedev.deathrally.game.model;
 
 /**
  * This class is used to give an object a position or coordinates
- * @author ???
+ * @author Mike Phoohad
  *
  */
 public class Position {
