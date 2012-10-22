@@ -35,7 +35,7 @@ public class Player implements Serializable{
 	 */
 	private static final int initialMoney = 10000;
 	private static final long serialVersionUID = 6336819303006304934L;
-	private static String defaultName = "Anonymous";
+	private static final String defaultName = "Anonymous";
 	private String name;
 	private Vehicle vehicle;
 	/**
@@ -167,17 +167,17 @@ public class Player implements Serializable{
 				Player p = (Player) OIS.readObject();
 				return p;
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
+				Log.d("OIS", "ClassNotFound");
 				e.printStackTrace();
 			}
 		} catch (StreamCorruptedException e) {
-			// TODO Auto-generated catch block
+			Log.d("OIS", "StreamCorrupted");
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			Log.d("OIS", "FileNotFound: "+SAVENAME);
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			Log.d("OIS", "IOException");
 			e.printStackTrace();
 		}
 		return null;

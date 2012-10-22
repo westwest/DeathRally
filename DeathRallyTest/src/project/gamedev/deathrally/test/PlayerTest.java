@@ -66,10 +66,13 @@ public class PlayerTest extends AndroidTestCase {
 	}
 	
 	public void testLoad(){
-		assertTrue("Load returned null => exceptions were thrown", 
-				Player.load(getContext(), stdName) != null);
-		assertTrue("Object is not instance of Player class", 
-				Player.load(getContext(), stdName) instanceof Player);
+		Player p = new Player(stdName);
+		p.addMoney(130);
+		p.save(getContext());
+		Player q = Player.load(getContext(), stdName);
+		assertTrue("Load returned null => exceptions were thrown", q != null);
+		assertTrue("Object is not instance of Player class", q instanceof Player);
+		assertEquals("Saved and loaded player had different state", p.getMoney(),q.getMoney());
 	}
 	
 	public void testToString(){
