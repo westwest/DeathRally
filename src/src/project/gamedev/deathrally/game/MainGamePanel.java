@@ -35,11 +35,10 @@ import android.view.MotionEvent;
 
 //Basic design taken from "http://obviam.net/index.php/a-very-basic-the-game-loop-for-android/"
 public class MainGamePanel extends GLSurfaceView  {
-
-	private GameRenderer gameRenderer;
-	
 	private static final String TAG = MainGamePanel.class.getSimpleName();
-	
+	private GameRenderer gameRenderer;
+	private GameLoop gameLoop;
+	private GameModel gameModel;
 	private Joystick joystick;
 	private Player user;
 	
@@ -47,6 +46,8 @@ public class MainGamePanel extends GLSurfaceView  {
 		super(context);
 		gameRenderer = GameRenderer.getInstance(context);		
 		setRenderer(gameRenderer);
+		gameModel = new GameModel();
+		gameLoop = new GameLoop(getHolder(), this, gameModel);
 		
 		getHolder().addCallback(this);		
 		setFocusable(true);
@@ -75,7 +76,6 @@ public class MainGamePanel extends GLSurfaceView  {
 	    float px = e.getX();
 	    float py = e.getY();
 	    
-	    
 	    switch (e.getAction()) {	    	
 	    	case MotionEvent.ACTION_DOWN:
 	    		if(px > 100 && px < 300){
@@ -92,9 +92,8 @@ public class MainGamePanel extends GLSurfaceView  {
 	    return true;
 	}
 
-	public void recieveAction(Player actor, GameAction action, float impulse) {
-		//GameLoop
-		
+	public void recieveAction(GameAction action) {
+		gameModel.performAction(action);
 	}
 }
 

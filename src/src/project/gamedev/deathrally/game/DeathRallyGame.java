@@ -18,9 +18,6 @@
  */
 
 package project.gamedev.deathrally.game;
-
-
-import project.gamedev.deathrally.game.model.*;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,7 +25,6 @@ import android.view.Window;
 
 public class DeathRallyGame extends Activity {
 	MainGamePanel view;
-	GameLoop gameLoop;
 	
 	private static final String TAG = DeathRallyGame.class.getSimpleName();
 	
@@ -38,19 +34,16 @@ public class DeathRallyGame extends Activity {
 		
 		Log.d(TAG, "game activity created");
 		view = new MainGamePanel(this);
-		gameLoop = new GameLoop(view.getHolder(), view);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(view);
 	}
 	
 	protected void onPause() {
-		gameLoop.setRunning(false);
 		super.onPause();
 		view.onPause();
 	}
 	
 	protected void onResume() {
-		gameLoop.setRunning(true);
 		super.onResume();
 		view.onResume();
 	}

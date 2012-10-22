@@ -27,19 +27,20 @@ import android.view.SurfaceHolder;
  * Game loop, basic design taken from "http://obviam.net/index.php/a-very-basic-the-game-loop-for-android/"
  */
 public class GameLoop extends Thread {
+	private static final String TAG = GameLoop.class.getSimpleName();
 	private SurfaceHolder surfaceHolder;
 	private MainGamePanel gamePanel;
 	private GameModel model;
 	private boolean isRunning = false;
-	private static final String TAG = GameLoop.class.getSimpleName();
 
 	
-	public GameLoop(SurfaceHolder surfaceHolder, MainGamePanel gamePanel) {
+	public GameLoop(SurfaceHolder surfaceHolder, MainGamePanel gamePanel, GameModel model) {
 		super();
 		this.surfaceHolder = surfaceHolder;
 		this.gamePanel = gamePanel;
 		this.model = new GameModel();
-
+		model.setPlayer(Players.getInstance().getActivePlayer());
+		Log.d(TAG,"GameLoop created successfully");
 	}
 
 	// game state

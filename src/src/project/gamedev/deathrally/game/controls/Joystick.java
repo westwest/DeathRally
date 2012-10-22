@@ -52,6 +52,9 @@ public class Joystick {
 		int[] viewport = GameRenderer.getViewport();
 		float posY = viewport[3] - py;
 		
+		/*
+		 * Remember to change to "new" implementation!
+		 */
 		GLU.gluUnProject(px, posY, 0, GameRenderer.getModelViewMatrix(), 0,
 				GameRenderer.getProjectionMatrix(), 0, viewport, 0, coordsOrigo, 0);
 		float[] coordsEdge = new float[16];
@@ -68,8 +71,10 @@ public class Joystick {
 	 * of the joystick should disappear and the actions should be reset.
 	 */
 	public void reset(){
-		controller.recieveAction(owner, GameAction.ACCELERATE, 0);
-		controller.recieveAction(owner, GameAction.TURN_LEFT, 0);
+		/*
+		controller.recieveAction();
+		controller.recieveAction();
+		*/
 		if(vJoystick != null){
 			vJoystick.destroy();
 		}
@@ -89,13 +94,11 @@ public class Joystick {
 			float dx = px-centerX;
 			float dy = py-centerY;
 			
-			controller.recieveAction(owner, GameAction.ACCELERATE, dy/radius);
-			
-			// There's no TURN game action so I inserted this if statement to handle direction
+			controller.recieveAction(GameAction.ACCELERATE);
 			if (dx <= 0) {
-				controller.recieveAction(owner, GameAction.TURN_LEFT, (dx * -1) / radius);
+				controller.recieveAction(GameAction.TURN_LEFT);
 			} else {
-				controller.recieveAction(owner, GameAction.TURN_RIGHT, dx/radius);
+				controller.recieveAction(GameAction.TURN_RIGHT);
 			}
 			
 		}

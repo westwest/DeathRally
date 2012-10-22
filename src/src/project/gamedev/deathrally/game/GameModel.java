@@ -106,14 +106,7 @@ public class GameModel {
 			}
 		}
 	}
-//	public void movePlayerVehicle(Player player, Direction direction) {
-//		player.moveVehicle(direction);
-//	}
-//	
-//	public void handBrakePlayerVehicle(Player player) {
-//		player.setHandBrakeOn();
-//	}
-
+	
 	public Player getPlayer() {
 		return player;
 	}
