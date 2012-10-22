@@ -42,7 +42,7 @@ public class HitboxTest extends AndroidTestCase {
 		assertFalse("Differently sized hitboxes should not be equal.", hb5.equals(hb4));
 		assertFalse("Differently sized hitboxes should not be equal.", hb3.equals(hb4));
 		assertTrue("Same size hitbox should be equal", hb.equals(hb1));
-		assertTrue("Hitbox can't be equal to null", hb.equals(null));
+		assertFalse("Hitbox can't be equal to null", hb.equals(null));
 	}
 	
 	
