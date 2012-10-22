@@ -42,8 +42,6 @@ public class Vehicle implements Entity {
 //	private boolean 				jumping;
 //	private boolean 				lifting;
 //	private boolean 				justJumped;
-//	private boolean 				crouching;
-//	private boolean 				waitingToUncrouch;
 	private boolean 				gameWon;
 //	private boolean 				inWater;
 	private Direction				direction;
@@ -160,7 +158,9 @@ public class Vehicle implements Entity {
 		if (Math.abs(this.acceleration.getX()) < 0.1) {
 			this.acceleration.setX(0);
 		}
-
+		if(this.direction.equals(Direction.FORWARD) && this.moving){
+		}
+		//Retardation
 		if (this.acceleration.getX() > 0) {
 			this.acceleration.add(new Vector2D(-0.1f, 0));
 		} else if (this.acceleration.getX() < 0) {
@@ -173,7 +173,6 @@ public class Vehicle implements Entity {
 		this.colliding = false;
 //		this.speedFactor = 1.0f;
 	}
-
 	
 	// Setters
 	public void setDirection(Direction d) {
@@ -218,51 +217,4 @@ public class Vehicle implements Entity {
 		boolean temp = this.alive;
 		return temp;
 	}
-	
-	
-
-	
-//	private float velocity = 0;
-//	private float maxVelocity = 10;
-//	private float acceleration;
-//	private float angle = 0;
-//	private float turningCapability = 10;
-//	
-//	
-//	public Vehicle() {};
-//	
-//	public Vehicle(Vehicle vehicle) {};
-//	
-//	public void move(Direction direction) {};
-//	
-//	public void accelerate(float intensity){
-//		//v = v0 + at, time?, a adjusted by intensity linear
-//		//time is set by speed of thread, if connected to render => fps, else something else
-//		//Algorithm does not give room for simulation of good/bad breaks. Retardation = -Acceleration
-//		velocity = velocity + intensity*acceleration; 
-//		if(velocity > maxVelocity){
-//			velocity = maxVelocity;
-//		}
-//		setChanged();
-//		notifyObservers(GameAction.ACCELERATE);
-//	};
-//	
-//	public void turn(float angle){
-//		this.angle = angle;
-//		setChanged();
-//		notifyObservers(GameAction.TURN);
-//	}
-//	
-//	public float getVelocity(){
-//		return velocity;
-//	}
-//	
-//	public float getAngle(){
-//		return angle;
-//	}
-//	
-//	public float getTurningCapability(){
-//		return turningCapability;
-//	}
-//	
 }

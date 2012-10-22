@@ -93,7 +93,7 @@ public class MainGamePanel extends GLSurfaceView  {
 	}
 
 	public void recieveAction(Player actor, GameAction action, float impulse) {
-		// TODO Auto-generated method stub
+		//GameLoop
 		
 	}
 }

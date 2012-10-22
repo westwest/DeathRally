@@ -19,6 +19,8 @@
 
 package project.gamedev.deathrally.game;
 
+import project.gamedev.deathrally.game.controls.Joystick;
+import project.gamedev.deathrally.game.model.Direction;
 import project.gamedev.deathrally.game.model.GameAction;
 import project.gamedev.deathrally.game.model.Level;
 import project.gamedev.deathrally.game.model.Player;
@@ -44,14 +46,18 @@ public class GameModel {
 		// TODO Complete action performing sequences
 		switch (action) {
 		case TURN_LEFT:
+			player.getVehicle().move(Direction.LEFT);
 			break;
 		case TURN_RIGHT:
+			player.getVehicle().move(Direction.RIGHT);
 			break;
 		case ACCELERATE:
+			player.getVehicle().move(Direction.FORWARD);
 			break;
 		case HANDBRAKE:
 			break;
 		case SHOOT:
+			//player.getVehicle().getActiveWeapon().shoot();
 			break;
 		case START_GAME:
 			break;
