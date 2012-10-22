@@ -142,15 +142,132 @@ public class Level {
 	}
 	
 	private void move(Entity e, Map<Entity, List<Entity>> collidedEntities) {
-		// TODO Need to move entity along the entity's vector and check each step for collision.
-//		Vector2D vector = e.getVector2D();
+		Vector2D vector = e.getVector2D();
 		
-//		stepPositionX(e, vector.getX(), collidedEntities);
-//		stepPositionY(e, vector.getY(), collidedEntities);
+		moveX(e, vector.getX(), collidedEntities);
+		moveY(e, vector.getY(), collidedEntities);
 	}
 	
 	private void defaultLevel() {
 		entities.removeAll(entities);
 		entities.add(new Vehicle(new Position(0,0), this, new Player("player")));
+	}
+	
+	private boolean moveX(Entity e, float movex, Map<Entity, List<Entity>> collidedEntities) {
+		
+		// A downside right now is that it only checks for integer positions
+
+		int preferredx = Math.round(movex);
+		List<Entity> collided = collidedEntities.get(e);
+		int addx = Math.signum(preferredx) > 0 ? 1 : -1;
+
+		float[][] searchRectangle = new float[2][2];
+		searchRectangle[0][0] = e.getPosition().getX()+Math.signum(preferredx);
+		searchRectangle[0][1] = e.getPosition().getY();
+		searchRectangle[1][0] = e.getHitbox().getWidth();				
+		searchRectangle[1][1] = e.getHitbox().getHeight();
+
+		for (int x = 0; x < Math.abs(preferredx); x++) {
+			searchRectangle[0][0] = e.getPosition().getX()
+					+ (x * Math.signum(preferredx)) + addx;
+
+			for (Entity colliding : this.getEntitiesAt(searchRectangle[0][0], searchRectangle[0][1],
+					(int)searchRectangle[1][0], (int)searchRectangle[1][1])) {
+				if (colliding != e) {
+
+					Direction d1 = Math.signum(preferredx) > 0 ? Direction.LEFT
+							: Direction.RIGHT;
+					Direction d2 = Math.signum(preferredx) > 0 ? Direction.RIGHT
+							: Direction.LEFT;
+
+					if (!collided.contains(colliding)) {
+						colliding.collide(new CollisionEvent(e, d1));
+						e.collide(new CollisionEvent(colliding, d2));
+						collided.add(colliding);
+					}
+
+					// If the entity is set to collide with this entity, check
+					// if the other has this in its list, in that case try to
+					// move that
+					// away and continue.
+					if (e.getCollideTypes().contains(colliding.getType())) {
+						if (colliding.getCollideTypes().contains(e.getType())) {
+							if (!moveX(colliding,
+									Math.signum(preferredx), collidedEntities)) {
+								return false;
+							}
+						} else {
+							return false;
+						}
+					}
+
+					// Else if the collided entity has this entity in his list,
+					// move it out of the way
+					else if (colliding.getCollideTypes().contains(e.getType())) {
+						if (!moveX(colliding, Math.signum(preferredx),
+								collidedEntities)) {
+							return false;
+						}
+					}
+
+					// Otherwise just pass through the entity
+				}
+			}
+		}
+
+		// Add that it moves the last bit until the collision also before returning
+		return true;
+	}
+	
+	private boolean moveY(Entity e, float movey,
+			Map<Entity, List<Entity>> collidedEntities) {
+
+		int preferredy = Math.round(movey);
+		List<Entity> collided = collidedEntities.get(e);
+		int addy = Math.signum(preferredy) > 0 ? 1 : -1;
+		float[][] searchRectangle = new float[2][2];
+		
+		searchRectangle[0][0] = e.getPosition().getX();
+		searchRectangle[0][1] = e.getPosition().getY();
+		searchRectangle[1][0] = e.getHitbox().getWidth();				
+		searchRectangle[1][1] = e.getHitbox().getHeight();
+
+		for (int y = 0; y < Math.abs(preferredy); y++) {			
+			searchRectangle[0][1] = e.getPosition().getY()
+					+ (y * Math.signum(preferredy)) + addy;
+					
+			for (Entity colliding : this.getEntitiesAt(searchRectangle[0][0], searchRectangle[0][1],
+					(int)searchRectangle[1][0], (int)searchRectangle[1][1])) {
+				if (colliding != e) {
+
+					Direction d1 = Math.signum(preferredy) > 0 ? Direction.TOP
+							: Direction.BOTTOM;
+					Direction d2 = Math.signum(preferredy) > 0 ? Direction.BOTTOM
+							: Direction.TOP;
+
+					if (!collided.contains(colliding)) {
+						colliding.collide(new CollisionEvent(e, d1));
+						e.collide(new CollisionEvent(colliding, d2));
+						collided.add(colliding);
+					}
+
+					if (e.getCollideTypes().contains(colliding.getType())) {
+						if (colliding.getCollideTypes().contains(e.getType())) {
+							if (!moveY(colliding,
+									Math.signum(preferredy), collidedEntities)) {
+								return false;
+							}
+						} else {
+							return false;
+						}
+					} else if (colliding.getCollideTypes()
+							.contains(e.getType())) {
+						moveY(colliding, Math.signum(preferredy),
+								collidedEntities);
+					}
+				}
+			}
+		}
+		return true;
 	}
 }
