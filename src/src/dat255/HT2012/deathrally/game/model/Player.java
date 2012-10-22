@@ -20,22 +20,87 @@
 package dat255.HT2012.deathrally.game.model;
 
 public class Player {
-	String name;
-	Vehicle vehicle;
-	int id;
+	private String name;
+	private VehicleName vName;
+	private VehicleType vType;
+	private int vehicleID;
 	
-	public Player(String name) {
-		
+	public Player() {
+		this("Player 1", VehicleName.TEST2_VEHICLE, VehicleType.CAR, 1);
 	}
 	
-	public void setVehicle() {
-		
+	public Player(String name, VehicleName v, VehicleType type, int id) {
+		this.name = name;
+		this.vName = v;
+		this.vType = type;
+		this.vehicleID = id;
 	}
 	
-	public Vehicle getVehicle() {
-		// TODO
-		return null;
+	public String getName() {
+		return name;
 	}
-	
-	//TODO hashCode() and equals()
+	public VehicleName getvName() {
+		return vName;
+	}
+	public VehicleType getvType() {
+		return vType;
+	}
+	public int getId() {
+		return vehicleID;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setvName(VehicleName vName) {
+		this.vName = vName;
+	}
+	public void setvType(VehicleType vType) {
+		this.vType = vType;
+	}
+	public void setId(int id) {
+		this.vehicleID = id;
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + vehicleID;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((vName == null) ? 0 : vName.hashCode());
+		return result;
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		Player other = (Player) obj;
+		if (vehicleID != other.vehicleID) {
+			return false;
+		}
+		if (name == null) {
+			if (other.name != null) {
+				return false;
+			}
+		} else if (!name.equals(other.name)) {
+			return false;
+		}
+		if (vName != other.vName) {
+			return false;
+		}
+		return true;
+	}
+
 }
