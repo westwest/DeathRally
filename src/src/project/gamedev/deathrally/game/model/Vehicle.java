@@ -33,32 +33,22 @@ public class Vehicle implements Entity {
 	private Position 				startPos;
 	private Vector2D 				v2d;
 	private Vector2D 				addVector;
-	private Vector2D 				gravity;
 	private Vector2D 				acceleration;
 	private boolean 				colliding;
 	private boolean 				alive;
 	private boolean 				moving;
-//	private boolean 				onGround;
-//	private boolean 				jumping;
-//	private boolean 				lifting;
-//	private boolean 				justJumped;
 	private boolean 				gameWon;
-//	private boolean 				inWater;
 	private Direction				direction;
-//	private List<CollisionEvent> 	collidingList;
 	private Hitbox 					hitbox;
-	private Level 					level;
 	private List<String> 			collideList;
 	private Player					player;
-//	private float 					speedFactor;
-	
-	
+		
 	public Vehicle(Level level, Player player) {
 		this(new Position(0, 0), level, player);
 	}
 
 	public Vehicle(Position position, Level level, Player player) {
-		this.level = level;
+//		this.level = level;
 		this.collideList = new ArrayList<String>();
 		// TODO Add what Vehicles collides with
 		this.gameWon = false;
@@ -69,7 +59,7 @@ public class Vehicle implements Entity {
 		this.addVector = new Vector2D(0, 0);
 		this.direction = Direction.RIGHT;
 //		this.collidingList = new ArrayList<CollisionEvent>();
-		this.gravity = new Vector2D(0, 1);
+//		this.gravity = new Vector2D(0, 1);
 		this.acceleration = new Vector2D(0, 0);
 		this.hitbox = new Hitbox(28, 46);
 		this.player = player;
@@ -142,6 +132,13 @@ public class Vehicle implements Entity {
 		this.update(10);
 	}
 
+//	This method contains an awful lot of constants that might be better set somewhere else.
+//	So that for example each vehicle can have different constants for acceleration, top speed, etc.
+	/**
+	 * Updates the Vehicle so that it moves along it's vector(s).
+	 * 
+	 * @param: int, Time since last update
+	 */
 	@Override
 	public void update(int elapsedTime) {
 		this.v2d = new Vector2D(addVector);
@@ -158,9 +155,7 @@ public class Vehicle implements Entity {
 		if (Math.abs(this.acceleration.getX()) < 0.1) {
 			this.acceleration.setX(0);
 		}
-		if(this.direction.equals(Direction.FORWARD) && this.moving){
-		}
-		//Retardation
+
 		if (this.acceleration.getX() > 0) {
 			this.acceleration.add(new Vector2D(-0.1f, 0));
 		} else if (this.acceleration.getX() < 0) {
@@ -173,6 +168,7 @@ public class Vehicle implements Entity {
 		this.colliding = false;
 //		this.speedFactor = 1.0f;
 	}
+
 	
 	// Setters
 	public void setDirection(Direction d) {
@@ -181,7 +177,7 @@ public class Vehicle implements Entity {
 	
 	public void collide(CollisionEvent evt) {
 		this.colliding = true; 
-		// TODO Add what happens in what happens in all types of collision
+		// TODO Add what happens in all types of collision
 	}
 	
 	@Override
